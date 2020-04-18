@@ -7,7 +7,16 @@
     "ng:lint": "ng lint",
     "ng:e2e": "ng e2e",
     "ng:serve": "ng serve",
-    "ng:build": "ng build --prod --base-href ./"
+    "ng:build": "ng build --prod --base-href ./",
+    "electron:serve": "wait-on http://localhost:4200 && npm-run-all -p electron:build:tsc electron:build:webpack",
+    "electron:build:tsc": "tsc -b src/electron -w",
+    "electron:build:webpack": "wait-on dist/electron/preload.js && electron-webpack dev",
+    "electron:build": "tsc -b src/electron && electron-webpack",
+    "start": "del -f dist && npm-run-all -p ng:serve electron:serve",
+    "build:dist": "del -f dist && yarn ng:build && yarn electron:build",
+    "build:copy": "cpy package.json dist/main/* dist/angular/* dist/build",
+    "build": "yarn build:dist && yarn build:copy && cd dist/build && yarn --prod",
+    "package": "yarn build && electron-builder"
   },
   "private": true,
   "dependencies": {},
