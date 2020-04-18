@@ -1,0 +1,9 @@
+{
+  "main": {
+    "extraEntries": ["@/preload.js"],
+    "sourceDirectory": "dist/electron"
+  },
+  "renderer": {
+    "sourceDirectory": null
+  }
+}
