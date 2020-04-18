@@ -1,6 +1,8 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import { AbstractService } from '../services/abstract-service';
+import { MultiplesService } from '../services/multiples-service';
 
 export class Window {
   private _window: BrowserWindow | any;
@@ -12,6 +14,7 @@ export class Window {
 
     this.createWindow();
     this.loadRender();
+    this.registerService(MultiplesService);
   }
 
   private createWindow(): void {
@@ -58,6 +61,21 @@ export class Window {
       setImmediate(() => {
         this._window.focus();
       });
+    });
+  }
+
+  private registerService(AnyService: typeof AbstractService) {
+    const service = new AnyService();
+    ipcMain.on(service.receptionChannel(), async (event, ...args) => {
+      // Handling input
+      console.log(`Received [${service.receptionChannel()}] : `, args);
+      const data = await service.process(...args);
+
+      // Handling output
+      if (service.sendingChannel()) {
+        console.log(`Sent [${service.sendingChannel()}] : `, data);
+        this._window.webContents.send(service.sendingChannel(), ...data);
+      }
     });
   }
 
