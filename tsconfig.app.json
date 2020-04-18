@@ -4,11 +4,6 @@
     "outDir": "./out-tsc/app",
     "types": []
   },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "files": ["src/angular/main.ts", "src/angular/polyfills.ts"],
+  "include": ["src/angular/**/*.d.ts"]
 }
