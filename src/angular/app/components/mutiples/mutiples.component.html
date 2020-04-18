@@ -1,0 +1,26 @@
+<div id="multiples">
+  <div class="container">
+    <h2>Times table</h2>
+    <form [formGroup]="timesTableForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input
+          type="number"
+          class="form-control"
+          formControlName="input"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!timesTableForm.valid"
+      >
+        SUBMIT
+      </button>
+    </form>
+
+    <h3 *ngFor="let multiple of multiples; let i = index">
+      {{ timesTableForm.value.input }} * {{ 1 + i }} = {{ multiple }}
+    </h3>
+  </div>
+</div>
