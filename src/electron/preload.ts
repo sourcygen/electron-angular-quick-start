@@ -18,6 +18,15 @@ const windowApi: WindowApi = {
     }
   },
 };
-contextBridge.exposeInMainWorld('api', windowApi);
+
+declare const window: any;
+if (process.env.X_NODE_ENV === 'e2e-test') {
+  // Injecting windowApi directly
+  window.api = windowApi;
+} else {
+  // ContextBridge API can only be used when contextIsolation is enabled
+  // which is normally the case except in e2e test mode
+  contextBridge.exposeInMainWorld('api', windowApi);
+}
 
 console.log('The preload script has been injected successfully.');
