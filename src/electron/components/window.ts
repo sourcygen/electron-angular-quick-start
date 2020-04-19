@@ -7,10 +7,11 @@ import { MultiplesService } from '../services/multiples-service';
 export class Window {
   private _window: BrowserWindow | any;
   private _dev: boolean;
+  private _e2e: boolean;
 
   constructor() {
-    const env = process.env.NODE_ENV;
-    this._dev = env === 'development';
+    this._dev = process.env.NODE_ENV === 'development';
+    this._e2e = process.env.X_NODE_ENV === 'e2e-test';
 
     this.createWindow();
     this.loadRender();
@@ -23,10 +24,16 @@ export class Window {
       height: 600,
       backgroundColor: '#FFFFFF',
       webPreferences: {
+        // Default behavior in Electron since 5, that
+        // limits the powers granted to remote content
+        // except in e2e test when those powers are required by Spectron
+        nodeIntegration: this._e2e,
         // Isolate window context to protect against prototype pollution
-        contextIsolation: true,
+        // except in e2e test when that access is required by Spectron
+        contextIsolation: !this._e2e,
         // Disable the remote module to enhance security
-        enableRemoteModule: false,
+        // except in e2e test when that access is required by Spectron
+        enableRemoteModule: this._e2e,
         // Use a preload script to enhance security
         preload: path.join(app.getAppPath(), 'preload.js'),
       },
