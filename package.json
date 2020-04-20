@@ -21,7 +21,9 @@
     "package": "yarn build && electron-builder"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "source-map-support": "^0.5.17"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.1",
     "@angular/animations": "~9.1.1",
