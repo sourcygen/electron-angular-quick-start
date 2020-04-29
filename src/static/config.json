@@ -1,0 +1,23 @@
+{
+  "development": {
+    "config_id": "development",
+    "isIconAvailable": true,
+    "isNodeIntegration": false,
+    "isContextIsolation": true,
+    "isEnableRemoteModule": false,
+    "isOpenDevTools": true
+  },
+  "e2e-test": {
+    "config_id": "e2e-test",
+    "isIconAvailable": true,
+    "isNodeIntegration": true,
+    "isContextIsolation": false,
+    "isEnableRemoteModule": true,
+    "isOpenDevTools": false
+  },
+  "production": {
+    "config_id": "production",
+    "isIconAvailable": false,
+    "isOpenDevTools": false
+  }
+}

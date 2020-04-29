@@ -4,17 +4,13 @@ import * as url from 'url';
 import { AbstractService } from '../services/abstract-service';
 import { MultiplesService } from '../services/multiples-service';
 
+declare const global: any;
 declare const __static: string;
 
 export class Window {
   private _window: BrowserWindow | any;
-  private _dev: boolean;
-  private _e2e: boolean;
 
   constructor() {
-    this._dev = process.env.NODE_ENV === 'development';
-    this._e2e = process.env.X_NODE_ENV === 'e2e-test';
-
     this.createWindow();
     this.loadRenderer();
     this.registerService(MultiplesService);
@@ -25,18 +21,18 @@ export class Window {
       width: 800,
       height: 600,
       backgroundColor: '#FFFFFF',
-      icon: this._dev ? this.loadIcon() : null,
+      icon: this.loadIcon(),
       webPreferences: {
         // Default behavior in Electron since 5, that
         // limits the powers granted to remote content
         // except in e2e test when those powers are required by Spectron
-        nodeIntegration: this._e2e,
+        nodeIntegration: global.gConfig.isNodeIntegration,
         // Isolate window context to protect against prototype pollution
         // except in e2e test when that access is required by Spectron
-        contextIsolation: !this._e2e,
+        contextIsolation: global.gConfig.isContextIsolation,
         // Disable the remote module to enhance security
         // except in e2e test when that access is required by Spectron
-        enableRemoteModule: this._e2e,
+        enableRemoteModule: global.gConfig.isEnableRemoteModule,
         // Use a preload script to enhance security
         preload: path.join(app.getAppPath(), 'preload.js'),
       },
@@ -44,21 +40,23 @@ export class Window {
   }
 
   private loadIcon(): Electron.NativeImage {
-    const iconPath = path.join(__static, 'icons/icon.png');
-    console.debug('Icon Path ', iconPath);
-    const iconObj = nativeImage.createFromPath(iconPath);
-    // Change dock icon on MacOS
-    if (iconObj && process.platform === 'darwin') {
-      app.dock.setIcon(iconObj);
+    let iconObj = null;
+    if (global.gConfig.isIconAvailable) {
+      const iconPath = path.join(__static, 'icons/icon.png');
+      console.debug('Icon Path ', iconPath);
+      iconObj = nativeImage.createFromPath(iconPath);
+      // Change dock icon on MacOS
+      if (iconObj && process.platform === 'darwin') {
+        app.dock.setIcon(iconObj);
+      }
     }
     return iconObj;
   }
 
   private loadRenderer(): void {
-    if (this._dev) {
+    if (global.gConfig.config_id === 'development') {
       // Dev mode, take advantage of the live reload by loading local URL
       this.window.loadURL(`http://localhost:4200`);
-      this.openDevTools();
     } else {
       // Else mode, we simply load angular bundle
       const indexPath = url.format({
@@ -67,6 +65,10 @@ export class Window {
         slashes: true,
       });
       this.window.loadURL(indexPath);
+    }
+
+    if (global.gConfig.isOpenDevTools) {
+      this.openDevTools();
     }
 
     // Delete current reference when the window is closed`
