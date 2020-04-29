@@ -1,21 +1,14 @@
 <div id="multiples">
   <div class="container">
-    <h2>Times table</h2>
+    <button (click)="translateIn('en')">EN</button>
+    <button (click)="translateIn('fr')">FR</button>
+    <h2>{{ 'MULTIPLES.TITLE' | translate }}</h2>
     <form [formGroup]="timesTableForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <input
-          type="number"
-          class="form-control"
-          formControlName="input"
-          required
-        />
+        <input type="number" class="form-control" formControlName="input" required />
       </div>
-      <button
-        type="submit"
-        class="btn btn-success"
-        [disabled]="!timesTableForm.valid"
-      >
-        SUBMIT
+      <button type="submit" class="btn btn-success" [disabled]="!timesTableForm.valid">
+        {{ 'MULTIPLES.SUBMIT' | translate }}
       </button>
     </form>
 
