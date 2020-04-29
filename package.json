@@ -16,7 +16,7 @@
     "e2e": "yarn ng:e2e && yarn electron:e2e",
     "start": "del -f dist && npm-run-all -p ng:serve electron:serve",
     "build:dist": "del -f dist && yarn ng:build && yarn electron:build",
-    "build:copy": "cpy package.json dist/main/* dist/angular/* dist/build",
+    "build:copy": "cpy package.json dist/main/* dist/angular/* dist/build && cpy static ../dist/build --cwd=src --parents",
     "build": "yarn build:dist && yarn build:copy && cd dist/build && yarn --prod",
     "package": "yarn build && electron-builder"
   },

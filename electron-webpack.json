@@ -1,4 +1,5 @@
 {
+  "staticSourceDirectory": "src/static",
   "main": {
     "extraEntries": ["@/preload.js"],
     "sourceDirectory": "dist/electron"

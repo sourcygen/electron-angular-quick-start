@@ -20,12 +20,15 @@
     "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}"
   ],
   "linux": {
+    "icon": "dist/build/static/icons/icon.png",
     "target": ["AppImage"]
   },
   "mac": {
+    "icon": "dist/build/static/icons/icon.png",
     "target": ["dmg"]
   },
   "win": {
+    "icon": "dist/build/static/icons/icon.png",
     "target": ["NSIS"]
   }
 }
