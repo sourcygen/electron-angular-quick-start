@@ -1,8 +1,10 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, nativeImage } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import { AbstractService } from '../services/abstract-service';
 import { MultiplesService } from '../services/multiples-service';
+
+declare const __static: string;
 
 export class Window {
   private _window: BrowserWindow | any;
@@ -14,7 +16,7 @@ export class Window {
     this._e2e = process.env.X_NODE_ENV === 'e2e-test';
 
     this.createWindow();
-    this.loadRender();
+    this.loadRenderer();
     this.registerService(MultiplesService);
   }
 
@@ -23,6 +25,7 @@ export class Window {
       width: 800,
       height: 600,
       backgroundColor: '#FFFFFF',
+      icon: this._dev ? this.loadIcon() : null,
       webPreferences: {
         // Default behavior in Electron since 5, that
         // limits the powers granted to remote content
@@ -40,7 +43,18 @@ export class Window {
     });
   }
 
-  private loadRender(): void {
+  private loadIcon(): Electron.NativeImage {
+    const iconPath = path.join(__static, 'icons/icon.png');
+    console.debug('Icon Path ', iconPath);
+    const iconObj = nativeImage.createFromPath(iconPath);
+    // Change dock icon on MacOS
+    if (iconObj && process.platform === 'darwin') {
+      app.dock.setIcon(iconObj);
+    }
+    return iconObj;
+  }
+
+  private loadRenderer(): void {
     if (this._dev) {
       // Dev mode, take advantage of the live reload by loading local URL
       this.window.loadURL(`http://localhost:4200`);
@@ -55,7 +69,7 @@ export class Window {
       this.window.loadURL(indexPath);
     }
 
-    // Delete current reference when the window is closed
+    // Delete current reference when the window is closed`
     this._window.on('closed', () => {
       delete this._window;
     });
