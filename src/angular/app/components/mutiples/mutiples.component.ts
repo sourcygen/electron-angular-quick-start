@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { ElectronIpcService } from 'angular/app/services/electron-ipc.service';
 import { WindowApiConst } from 'shared';
 
@@ -15,7 +16,10 @@ export class MutiplesComponent implements OnInit {
 
   multiples = [];
 
-  constructor(private electronIpc: ElectronIpcService) {}
+  constructor(
+    private electronIpc: ElectronIpcService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     // Specifying what to do with received data from main process
@@ -31,6 +35,10 @@ export class MutiplesComponent implements OnInit {
 
     // Init time tables with given random value
     this.onSubmit();
+  }
+
+  translateIn(lang: string) {
+    this.translate.use(lang);
   }
 
   onSubmit() {
