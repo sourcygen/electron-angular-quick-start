@@ -1,27 +1,86 @@
-# ElectronAngularQuickStart
+## Overview
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+Depending on your need, putting up [Electron](https://www.electronjs.org/ "Electron") and [Angular](https://angular.io/ "Angular") may require a lot of setup. Fortunately, this simple project will help you **go fast** and directly start building desktop apps.
 
-## Development server
+> Because building a desktop app with Electron and Angular shouldn't be difficult.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Main features :
 
-## Code scaffolding
+- This project is based on last [Angular](https://angular.io/ "Angular") version with required dependencies for [Electron](https://www.electronjs.org/ "Electron").
+- This project is also written in [Typescript](https://www.typescriptlang.org/) and includes test samples ([Jasmine](https://jasmine.github.io/) and [Spectron](https://www.electronjs.org/spectron)).
+- The app is runnable `on desktop` (with **live-reload** in `development mode`).
+- The app is also runnable `on browser` but **without Electron features**.
+- You are granted a minimal size for your app thanks to `electron-webpack`.
+- You can also generate your platform packages thanks to `electron-builder`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Project structure :
 
-## Build
+```
+electron-angular-quick-start
+├── README.md
+├── angular.json
+├── browserslist
+├── e2e
+│   ├── angular              # Angular end-to-end test directory
+│   └── electron             # Electron end-to-end test directory
+├── electron-builder.json
+├── electron-webpack.json
+├── karma.conf.js
+├── package.json
+├── src
+│   ├── angular              # Angular source directory (web part)
+│   ├── electron             # Electron source directory (desktop part)
+│   └── shared               # Shared source directory (common part)
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.spec.json
+├── tslint.json
+└── yarn.lock
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Getting started
 
-## Running unit tests
+To clone and run this repository, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/), [Yarn](https://classic.yarnpkg.com/fr/docs/install) and [Angular-CLI](https://angular.io/cli) installed on your computer. And then from your command line:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+> [Yarn](http://yarnpkg.com/) is strongly recommended instead of npm (see this [issue](https://github.com/electron-userland/electron-builder/issues/1147#issuecomment-276284477)).
 
-## Running end-to-end tests
+```bash
+# First, clone this repository
+git clone https://github.com/sourcygen/electron-angular-quick-start.git
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# Then go into the repository
+cd electron-angular-quick-start
 
-## Further help
+# After that, install dependencies
+yarn install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# And finally run the app (dev mode)
+yarn start
+```
+
+## How to use
+
+| Command             | Description                               |
+| ------------------- | ----------------------------------------- |
+| `yarn install`      | Install dependencies                      |
+| `yarn start`        | Run the app on desktop (dev mode)         |
+| `yarn ng:serve`     | Run the app on browser (dev mode)         |
+| `yarn e2e`          | Run glogbal end-to-end tests              |
+| `yarn ng:e2e`       | Run **angular** end-to-end tests          |
+| `yarn electron:e2e` | Run **electron** end-to-end tests         |
+| `yarn build`        | Build artifact content                    |
+| `yarn package`      | Generate platform packages (dist/release) |
+
+## Resources
+
+### Electron
+
+- [electronjs.org/docs](https://electronjs.org/docs) - Electron's documentation
+- [electron/simple-samples](https://github.com/electron/simple-samples) - Small applications with ideas to take further
+- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - Sample app that teaches you how to use Electron
+
+### Angular
+
+- [angular.io/start](https://angular.io/start) - Getting started with Angular
+- [angular.io/docs](https://angular.io/docs) - Angular's documentation
+- [cli.angular.io](https://cli.angular.io/) - Angular CLI documentation
