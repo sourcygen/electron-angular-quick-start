@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/sourcygen/electron-angular-quick-start/compare/v1.0.0...v1.0.1) (2020-04-30)
+
+
+### Bug Fixes
+
+* reopening window crash on macos ([f442df7](https://github.com/sourcygen/electron-angular-quick-start/commit/f442df72c4120fb616d21c5c4e245a5eb478f57e))
+
+
+
 # 1.0.0 (2020-04-30)
 
 ### Features
