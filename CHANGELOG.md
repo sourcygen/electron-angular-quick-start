@@ -1,0 +1,23 @@
+# 1.0.0 (2020-04-30)
+
+### Features
+
+- disable remote content execution ([0c82cf4](https://github.com/sourcygen/electron-angular-quick-start/commit/0c82cf425930de7368debfbc6176a3ef8ed7591e))
+- adapt angular part ([83301e0](https://github.com/sourcygen/electron-angular-quick-start/commit/83301e0fe7387e791d23f7c1d6cdaeb1f53e3cf4))
+- adapt electron part ([73acf88](https://github.com/sourcygen/electron-angular-quick-start/commit/73acf88a079984e50c15e23e5ad0aa98b0a7c2a1))
+- add electron dependencies ([f506c0c](https://github.com/sourcygen/electron-angular-quick-start/commit/f506c0c2ab613ec0d72863f5a30c2c1ce553dcd2))
+- add electron e2e launch scripts ([7e02b37](https://github.com/sourcygen/electron-angular-quick-start/commit/7e02b37b10f54f7bbb66e88f7e433ba67594287b))
+- add electron packaging scripts ([afd8916](https://github.com/sourcygen/electron-angular-quick-start/commit/afd8916d7143b258ed273d613f15135f91cb8edd))
+- add spectron and utility dependencies ([a100e3c](https://github.com/sourcygen/electron-angular-quick-start/commit/a100e3c488fde1cc2d60229f47032331b201f7b5))
+- change project structure to meet targeted architecture ([9c8788f](https://github.com/sourcygen/electron-angular-quick-start/commit/9c8788fb2e419ae63c3a6545f4c5966547232702))
+- change project structure to meet targeted architecture ([ea90fd8](https://github.com/sourcygen/electron-angular-quick-start/commit/ea90fd845f8188c5fd4f867d7ec7f80ffd1b6e3f))
+- decrease security in e2e tests ([8543cf1](https://github.com/sourcygen/electron-angular-quick-start/commit/8543cf148c498caa3e3298d8f08b14d16b5426b0))
+- env config setup ([8822440](https://github.com/sourcygen/electron-angular-quick-start/commit/8822440f7dfa4452b588520cca5179121b276188))
+- i18n setup with ngx-translate ([f17719c](https://github.com/sourcygen/electron-angular-quick-start/commit/f17719c7e8d4c7798b299a6d500712f903ddda3e))
+- icon settings ([720223e](https://github.com/sourcygen/electron-angular-quick-start/commit/720223ec7ff4984445dcb52fe06ffe3386756367))
+- init electron e2e code source ([45a02e3](https://github.com/sourcygen/electron-angular-quick-start/commit/45a02e392c0fd755df33760db7f4adbbd31d9616))
+- init new angular project with angular cli ([cae7f62](https://github.com/sourcygen/electron-angular-quick-start/commit/cae7f629aafe69edb9aaaa6907615e5a2138b05a))
+- init shared code source ([647889c](https://github.com/sourcygen/electron-angular-quick-start/commit/647889cd70d8d334122ea33c376f8cb51cf3fe7d))
+- log setup with winston ([fd598bb](https://github.com/sourcygen/electron-angular-quick-start/commit/fd598bb10de942869a857e8927831aa87f768024))
+- move production dependencies into development dependencies ([47c74d0](https://github.com/sourcygen/electron-angular-quick-start/commit/47c74d015d130a15768be5e783b80f9bfcc97754))
+- packaging config ([2559e97](https://github.com/sourcygen/electron-angular-quick-start/commit/2559e973dcf1478f81e25d6acb7332f3edf91dcc))
