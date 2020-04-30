@@ -1,6 +1,8 @@
 {
   "development": {
     "config_id": "development",
+    "mainLogFile": "dist/dev-main.log",
+    "mainLogLevel": "debug",
     "isIconAvailable": true,
     "isNodeIntegration": false,
     "isContextIsolation": true,
@@ -9,6 +11,8 @@
   },
   "e2e-test": {
     "config_id": "e2e-test",
+    "mainLogFile": "dist/e2e-main.log",
+    "mainLogLevel": "error",
     "isIconAvailable": true,
     "isNodeIntegration": true,
     "isContextIsolation": false,
@@ -17,6 +21,8 @@
   },
   "production": {
     "config_id": "production",
+    "mainLogFile": "main.log",
+    "mainLogLevel": "error",
     "isIconAvailable": false,
     "isOpenDevTools": false
   }

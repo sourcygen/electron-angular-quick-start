@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as url from 'url';
 import { AbstractService } from '../services/abstract-service';
 import { MultiplesService } from '../services/multiples-service';
+import { Logger } from '../utils/logger';
 
 declare const global: any;
 declare const __static: string;
@@ -43,7 +44,7 @@ export class Window {
     let iconObj = null;
     if (global.gConfig.isIconAvailable) {
       const iconPath = path.join(__static, 'icons/icon.png');
-      console.debug('Icon Path ', iconPath);
+      Logger.debug('Icon Path', iconPath);
       iconObj = nativeImage.createFromPath(iconPath);
       // Change dock icon on MacOS
       if (iconObj && process.platform === 'darwin') {
@@ -91,12 +92,12 @@ export class Window {
     const service = new AnyService();
     ipcMain.on(service.receptionChannel(), async (event, ...args) => {
       // Handling input
-      console.log(`Received [${service.receptionChannel()}] : `, args);
+      Logger.debug(`Received [${service.receptionChannel()}]`, args);
       const data = await service.process(...args);
 
       // Handling output
       if (service.sendingChannel()) {
-        console.log(`Sent [${service.sendingChannel()}] : `, data);
+        Logger.debug(`Sent [${service.sendingChannel()}]`, data);
         this._window.webContents.send(service.sendingChannel(), ...data);
       }
     });

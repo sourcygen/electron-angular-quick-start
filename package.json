@@ -71,6 +71,7 @@
     "typescript": "~3.8.3",
     "wait-on": "^4.0.2",
     "webpack": "^4.42.1",
+    "winston": "^3.2.1",
     "zone.js": "~0.10.2"
   }
 }
