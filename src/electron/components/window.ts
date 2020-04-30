@@ -72,8 +72,11 @@ export class Window {
       this.openDevTools();
     }
 
-    // Delete current reference when the window is closed`
+    // When the window is closed`
     this._window.on('closed', () => {
+      // Remove IPC Main listeners
+      ipcMain.removeAllListeners();
+      // Delete current reference
       delete this._window;
     });
   }
