@@ -1,6 +1,21 @@
 {
   "name": "electron-angular-quick-start",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "An Electron and Angular Quick-starter",
+  "repository": "https://github.com/sourcygen/electron-angular-quick-start.git",
+  "author": "Sourcygen",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "angular 9",
+    "electron",
+    "electron 8",
+    "typescript",
+    "spectron",
+    "spectron 10",
+    "scss",
+    "live reload"
+  ],
   "scripts": {
     "ng": "ng",
     "ng:test": "ng test",
@@ -21,7 +36,8 @@
     "build:copy:electron": "cpy '**/*' '../build' --cwd=dist/main --parents && yarn build:copy:static",
     "build:copy": "cpy package.json dist/build && yarn build:copy:ng && yarn build:copy:electron",
     "build": "yarn build:dist && yarn build:copy && cd dist/build && yarn --prod",
-    "package": "yarn build && electron-builder"
+    "package": "yarn build && electron-builder",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +56,8 @@
     "@angular/platform-browser": "~9.1.1",
     "@angular/platform-browser-dynamic": "~9.1.1",
     "@angular/router": "~9.1.1",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@types/jasmine": "~3.5.0",
@@ -47,6 +65,7 @@
     "@types/node": "^12.11.1",
     "chromedriver": "^81.0.0",
     "codelyzer": "^5.1.2",
+    "conventional-changelog-cli": "^2.0.31",
     "cpy-cli": "^3.1.0",
     "cross-env": "^7.0.2",
     "del-cli": "^3.0.0",
@@ -54,6 +73,7 @@
     "electron-builder": "^22.5.1",
     "electron-webpack": "^2.8.2",
     "fs-extra": "^9.0.0",
+    "husky": "^4.2.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",
@@ -73,5 +93,10 @@
     "webpack": "^4.42.1",
     "winston": "^3.2.1",
     "zone.js": "~0.10.2"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
