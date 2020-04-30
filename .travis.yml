@@ -1,0 +1,16 @@
+language: node_js
+dist: xenial
+os:
+  - linux
+  - osx
+node_js:
+  - "12"
+addons:
+  chrome: stable
+services:
+  - xvfb
+install:
+  - yarn install
+script:
+  - yarn e2e
+  - yarn package
