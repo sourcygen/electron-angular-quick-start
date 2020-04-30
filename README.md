@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sourcygen/electron-angular-quick-start.svg?branch=master)](https://travis-ci.org/sourcygen/electron-angular-quick-start)
+
 ![Electron Angular Quick Start](https://repository-images.githubusercontent.com/256546297/5eb5eb80-8ad1-11ea-87e4-a93b57e7590d)
 
 ## Overview

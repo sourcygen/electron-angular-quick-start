@@ -36,7 +36,7 @@
     "build:copy:electron": "cpy '**/*' '../build' --cwd=dist/main --parents && yarn build:copy:static",
     "build:copy": "cpy package.json dist/build && yarn build:copy:ng && yarn build:copy:electron",
     "build": "yarn build:dist && yarn build:copy && cd dist/build && yarn --prod",
-    "package": "yarn build && electron-builder",
+    "package": "yarn build && electron-builder -p never",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "private": true,
