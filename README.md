@@ -1,3 +1,5 @@
+![Electron Angular Quick Start](https://repository-images.githubusercontent.com/256546297/5eb5eb80-8ad1-11ea-87e4-a93b57e7590d)
+
 ## Overview
 
 Depending on your need, putting up [Electron](https://www.electronjs.org/ "Electron") and [Angular](https://angular.io/ "Angular") may require a lot of setup. Fortunately, this simple project will help you **go fast** and directly start building desktop apps.
