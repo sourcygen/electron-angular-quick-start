@@ -1,3 +1,14 @@
+<a href="https://gitHub.com/sourcygen/electron-angular-quick-start/graphs/commit-activity"><img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintenance Status"/></a>
+    <a href="https://travis-ci.org/sourcygen/electron-angular-quick-start"><img src="https://travis-ci.org/sourcygen/electron-angular-quick-start.svg?branch=master" alt="Build Status"/></a>
+    <a href="https://github.com/sourcygen/electron-angular-quick-start/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="License MIT"></a>
+    <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+    <a href="https://twitter.com/share?text=Build%20cross%20platform%20desktop%20app%20with%20Electron%20and%20Angular%20%F0%9F%9A%80&url=https://github.com/sourcygen/electron-angular-quick-start"><img src="https://img.shields.io/twitter/url/https/github.com/sourcygen/electron-angular-quick-start.svg?style=social" alt="Tweet" align="right"></a>
+    <a href="https://github.com/sourcygen/electron-angular-quick-start/watchers"><img src="https://img.shields.io/github/watchers/sourcygen/electron-angular-quick-start.svg?style=social" alt="Watch on GitHub" align="right"></a>
+    <a href="https://github.com/sourcygen/electron-angular-quick-start/stargazers"><img src="https://img.shields.io/github/stars/sourcygen/electron-angular-quick-start.svg?style=social" alt="Star on GitHub" align="right"></a>
+
+
+![Electron Angular Quick Start](https://repository-images.githubusercontent.com/256546297/5eb5eb80-8ad1-11ea-87e4-a93b57e7590d)
+
 ## Overview
 
 Depending on your need, putting up [Electron](https://www.electronjs.org/ "Electron") and [Angular](https://angular.io/ "Angular") may require a lot of setup. Fortunately, this simple project will help you **go fast** and directly start building desktop apps.
