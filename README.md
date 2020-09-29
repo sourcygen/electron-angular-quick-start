@@ -1,11 +1,10 @@
 <a href="https://gitHub.com/sourcygen/electron-angular-quick-start/graphs/commit-activity"><img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintenance Status"/></a>
-    <a href="https://travis-ci.org/sourcygen/electron-angular-quick-start"><img src="https://travis-ci.org/sourcygen/electron-angular-quick-start.svg?branch=master" alt="Build Status"/></a>
-    <a href="https://github.com/sourcygen/electron-angular-quick-start/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="License MIT"></a>
-    <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
-    <a href="https://twitter.com/share?text=Build%20cross%20platform%20desktop%20app%20with%20Electron%20and%20Angular%20%F0%9F%9A%80&url=https://github.com/sourcygen/electron-angular-quick-start"><img src="https://img.shields.io/twitter/url/https/github.com/sourcygen/electron-angular-quick-start.svg?style=social" alt="Tweet" align="right"></a>
-    <a href="https://github.com/sourcygen/electron-angular-quick-start/watchers"><img src="https://img.shields.io/github/watchers/sourcygen/electron-angular-quick-start.svg?style=social" alt="Watch on GitHub" align="right"></a>
-    <a href="https://github.com/sourcygen/electron-angular-quick-start/stargazers"><img src="https://img.shields.io/github/stars/sourcygen/electron-angular-quick-start.svg?style=social" alt="Star on GitHub" align="right"></a>
-
+<a href="https://travis-ci.org/sourcygen/electron-angular-quick-start"><img src="https://travis-ci.org/sourcygen/electron-angular-quick-start.svg?branch=master" alt="Build Status"/></a>
+<a href="https://github.com/sourcygen/electron-angular-quick-start/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="License MIT"></a>
+<a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+<a href="https://twitter.com/share?text=Build%20cross%20platform%20desktop%20app%20with%20Electron%20and%20Angular%20%F0%9F%9A%80&url=https://github.com/sourcygen/electron-angular-quick-start"><img src="https://img.shields.io/twitter/url/https/github.com/sourcygen/electron-angular-quick-start.svg?style=social" alt="Tweet" align="right"></a>
+<a href="https://github.com/sourcygen/electron-angular-quick-start/watchers"><img src="https://img.shields.io/github/watchers/sourcygen/electron-angular-quick-start.svg?style=social" alt="Watch on GitHub" align="right"></a>
+<a href="https://github.com/sourcygen/electron-angular-quick-start/stargazers"><img src="https://img.shields.io/github/stars/sourcygen/electron-angular-quick-start.svg?style=social" alt="Star on GitHub" align="right"></a>
 
 ![Electron Angular Quick Start](https://repository-images.githubusercontent.com/256546297/5eb5eb80-8ad1-11ea-87e4-a93b57e7590d)
 
@@ -37,6 +36,7 @@ electron-angular-quick-start
 ├── electron-builder.json
 ├── electron-webpack.json
 ├── karma.conf.js
+├── package-lock.json
 ├── package.json
 ├── src
 │   ├── angular              # Angular source directory (web part)
@@ -45,15 +45,12 @@ electron-angular-quick-start
 ├── tsconfig.app.json
 ├── tsconfig.json
 ├── tsconfig.spec.json
-├── tslint.json
-└── yarn.lock
+└── tslint.json
 ```
 
 ## Getting started
 
-To clone and run this repository, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/), [Yarn](https://classic.yarnpkg.com/fr/docs/install) and [Angular-CLI](https://angular.io/cli) installed on your computer. And then from your command line:
-
-> [Yarn](http://yarnpkg.com/) is strongly recommended instead of npm (see this [issue](https://github.com/electron-userland/electron-builder/issues/1147#issuecomment-276284477)).
+To clone and run this repository, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) and [Angular-CLI](https://angular.io/cli) installed on your computer. And then from your command line:
 
 ```bash
 # First, clone this repository
@@ -63,24 +60,24 @@ git clone https://github.com/sourcygen/electron-angular-quick-start.git
 cd electron-angular-quick-start
 
 # After that, install dependencies
-yarn install
+npm install
 
 # And finally run the app (dev mode)
-yarn start
+npm start
 ```
 
 ## How to use
 
-| Command             | Description                               |
-| ------------------- | ----------------------------------------- |
-| `yarn install`      | Install dependencies                      |
-| `yarn start`        | Run the app on desktop (dev mode)         |
-| `yarn ng:serve`     | Run the app on browser (dev mode)         |
-| `yarn e2e`          | Run glogbal end-to-end tests              |
-| `yarn ng:e2e`       | Run **angular** end-to-end tests          |
-| `yarn electron:e2e` | Run **electron** end-to-end tests         |
-| `yarn build`        | Build artifact content                    |
-| `yarn package`      | Generate platform packages (dist/release) |
+| Command                | Description                               |
+| ---------------------- | ----------------------------------------- |
+| `npm run install`      | Install dependencies                      |
+| `npm run start`        | Run the app on desktop (dev mode)         |
+| `npm run ng:serve`     | Run the app on browser (dev mode)         |
+| `npm run e2e`          | Run glogbal end-to-end tests              |
+| `npm run ng:e2e`       | Run **angular** end-to-end tests          |
+| `npm run electron:e2e` | Run **electron** end-to-end tests         |
+| `npm run build`        | Build artifact content                    |
+| `npm run package`      | Generate platform packages (dist/release) |
 
 ## Resources
 
