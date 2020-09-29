@@ -31,6 +31,9 @@ export class Window {
         // Isolate window context to protect against prototype pollution
         // except in e2e test when that access is required by Spectron
         contextIsolation: global.gConfig.isContextIsolation,
+        // Ensure that JS values can't unsafely cross between worlds
+        // when using contextIsolation
+        worldSafeExecuteJavaScript: global.gConfig.isContextIsolation,
         // Disable the remote module to enhance security
         // except in e2e test when that access is required by Spectron
         enableRemoteModule: global.gConfig.isEnableRemoteModule,
