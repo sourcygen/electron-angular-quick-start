@@ -10,7 +10,7 @@ addons:
 services:
   - xvfb
 install:
-  - yarn install
+  - npm install
 script:
-  - yarn e2e
-  - yarn package
+  - npm run e2e
+  - npm run package
