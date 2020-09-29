@@ -1,6 +1,6 @@
 {
   "name": "electron-angular-quick-start",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An Electron and Angular Quick-starter",
   "repository": "https://github.com/sourcygen/electron-angular-quick-start.git",
   "author": "Sourcygen",
@@ -38,7 +38,7 @@
     "build:copy": "cpy package.json dist/build && npm run build:copy:ng && npm run build:copy:electron",
     "build": "npm run build:dist && npm run build:copy && cd dist/build && npm run --prod",
     "package": "npm run build && electron-builder -p never",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "private": true,
   "dependencies": {
