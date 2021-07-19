@@ -4,7 +4,7 @@ os:
   - linux
   - osx
 node_js:
-  - "12"
+  - "14"
 addons:
   chrome: stable
 services:
@@ -12,5 +12,5 @@ services:
 install:
   - npm install
 script:
-  - npm run e2e
-  - npm run package
+  - npm run test:electron-e2e
+  - npm run make
