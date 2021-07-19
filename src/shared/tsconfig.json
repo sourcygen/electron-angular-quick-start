@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "outDir": "../../dist/node_modules/shared"
-  },
-  "include": ["./**/*.ts"]
-}
