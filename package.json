@@ -1,7 +1,7 @@
 {
   "name": "electron-angular-quick-start",
   "productName": "electron-angular-quick-start",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "An Electron and Angular Quick-starter",
   "repository": "https://github.com/sourcygen/electron-angular-quick-start.git",
   "author": "Sourcygen",
