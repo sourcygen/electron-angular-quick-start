@@ -16,36 +16,33 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/ "Elect
 
 ### Main features :
 
-- This project is based on last [Angular](https://angular.io/ "Angular") version with required dependencies for [Electron](https://www.electronjs.org/ "Electron").
-- This project is also written in [Typescript](https://www.typescriptlang.org/) and includes test samples ([Jasmine](https://jasmine.github.io/) and [Spectron](https://www.electronjs.org/spectron)).
+- This project is based on last [Angular 12](https://angular.io/ "Angular") version with required dependencies for [Electron 13](https://www.electronjs.org/ "Electron").
+- This project is also written in [Typescript 4](https://www.typescriptlang.org/) and includes test samples ([Jasmine](https://jasmine.github.io/) and [Spectron 15](https://www.electronjs.org/spectron)).
 - The app is runnable `on desktop` (with **live-reload** in `development mode`).
 - The app is also runnable `on browser` but **without Electron features**.
-- You are granted a minimal size for your app thanks to `electron-webpack`.
-- You can also generate your platform packages thanks to `electron-builder`.
+- You can generate your platform distributables thanks to [`electron-forge`](https://www.electronforge.io/).
+- You are also granted a minimal size for your app thanks to the packaging based on its[`webpack-template`](https://www.electronforge.io/templates/typescript-+-webpack-template).
 
 ### Project structure :
 
 ```
-electron-angular-quick-start
-├── README.md
-├── angular.json
-├── browserslist
-├── e2e
-│   ├── angular              # Angular end-to-end test directory
-│   └── electron             # Electron end-to-end test directory
-├── electron-builder.json
-├── electron-webpack.json
-├── karma.conf.js
-├── package-lock.json
-├── package.json
-├── src
-│   ├── angular              # Angular source directory (web part)
-│   ├── electron             # Electron source directory (desktop part)
-│   └── shared               # Shared source directory (common part)
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.spec.json
-└── tslint.json
+├── ./CHANGELOG.md
+├── ./LICENSE
+├── ./README.md
+├── ./_config.yml
+├── ./commitlint.config.js
+├── ./package-lock.json
+├── ./package.json
+├── ./tsconfig.json
+├── ./webpack.main.config.js
+├── ./webpack.plugins.js
+├── ./webpack.renderer.config.js
+├── ./webpack.rules.js
+└── ./workspaces
+    ├── ./workspaces/angular-app       # Angular source directory (web renderer part)
+    ├── ./workspaces/electron-app      # Electron source directory (main & preload part)
+    ├── ./workspaces/electron-e2e      # Electron end-to-end test directory
+    └── ./workspaces/shared-lib        # Shared source directory (common part)
 ```
 
 ## Getting started
@@ -68,16 +65,15 @@ npm start
 
 ## How to use
 
-| Command                | Description                               |
-| ---------------------- | ----------------------------------------- |
-| `npm run install`      | Install dependencies                      |
-| `npm run start`        | Run the app on desktop (dev mode)         |
-| `npm run ng:serve`     | Run the app on browser (dev mode)         |
-| `npm run e2e`          | Run glogbal end-to-end tests              |
-| `npm run ng:e2e`       | Run **angular** end-to-end tests          |
-| `npm run electron:e2e` | Run **electron** end-to-end tests         |
-| `npm run build`        | Build artifact content                    |
-| `npm run package`      | Generate platform packages (dist/release) |
+| Command                     | Description                              |
+| --------------------------- | ---------------------------------------- |
+| `npm run install`           | Install dependencies                     |
+| `npm run start`             | Run the app on desktop (dev mode)        |
+| `npm run start:angular-app` | Run the app on browser (dev mode)        |
+| `npm run test:electron-e2e` | Run **electron** end-to-end tests        |
+| `npm run package`           | Build and prepare application content    |
+| `npm run make`              | Generate platform distributables (./out) |
+| `npm run clean`             | Delete generated outputs                 |
 
 ## Resources
 
