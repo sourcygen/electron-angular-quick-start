@@ -1,99 +1,149 @@
 {
   "name": "electron-angular-quick-start",
+  "productName": "electron-angular-quick-start",
   "version": "1.0.2",
   "description": "An Electron and Angular Quick-starter",
   "repository": "https://github.com/sourcygen/electron-angular-quick-start.git",
   "author": "Sourcygen",
   "license": "MIT",
+  "main": ".webpack/main",
   "keywords": [
     "angular",
-    "angular 10",
+    "angular 12",
     "electron",
-    "electron 8",
+    "electron 13",
     "typescript",
     "typescript 4",
     "spectron",
-    "spectron 10",
+    "spectron 15",
     "scss",
     "live reload"
   ],
+  "workspaces": [
+    "workspaces/angular-app",
+    "workspaces/shared-lib"
+  ],
+  "watch": {
+    "restart-electron-app": {
+      "patterns": [
+        "workspaces/electron-app",
+        "workspaces/shared-lib"
+      ],
+      "extensions": "ts,tsx"
+    }
+  },
   "scripts": {
-    "ng": "ng",
-    "ng:test": "ng test",
-    "ng:lint": "ng lint",
-    "ng:e2e": "ng e2e",
-    "ng:serve": "ng serve",
-    "ng:build": "ng build --prod --base-href ./",
-    "electron:e2e": "npm run build && cross-env X_NODE_ENV=e2e-test node e2e/electron/jasmine.js",
-    "electron:serve": "wait-on http://localhost:4200 && npm-run-all -p electron:build:tsc electron:build:webpack",
-    "electron:build:tsc": "tsc -b src/electron -w",
-    "electron:build:webpack": "wait-on dist/electron/preload.js && electron-webpack dev",
-    "electron:build": "tsc -b src/electron && electron-webpack",
-    "e2e": "npm run ng:e2e && npm run electron:e2e",
-    "start": "del -f dist && npm-run-all -p ng:serve electron:serve",
-    "build:dist": "del -f dist && npm run ng:build && npm run electron:build",
-    "build:copy:ng": "cpy '**/*' '../build' --cwd=dist/angular --parents",
-    "build:copy:static": "cpy 'static' '../dist/build' --cwd=src --parents",
-    "build:copy:electron": "cpy '**/*' '../build' --cwd=dist/main --parents && npm run build:copy:static",
-    "build:copy": "cpy package.json dist/build && npm run build:copy:ng && npm run build:copy:electron",
-    "build": "npm run build:dist && npm run build:copy && cd dist/build && npm run --prod",
-    "package": "npm run build && electron-builder -p never",
+    "start": "npm-run-all -p start:shared-lib start:angular-app start:electron-app",
+    "start:shared-lib": "tsc -b workspaces/shared-lib -w",
+    "start:angular-app": "cd workspaces/angular-app && npm run start",
+    "start:electron-app": "wait-on http://localhost:4200 && npm-watch restart-electron-app",
+    "restart-electron-app": "electron-forge start",
+    "package": "npm run package:angular-app && npm run package:electron-app",
+    "package:angular-app": "cd workspaces/angular-app && npm run package",
+    "package:electron-app": "electron-forge package",
+    "make": "npm run package:angular-app && electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts .",
+    "test:electron-e2e": "npm run package && cross-env X_NODE_ENV=e2e-test node workspaces/electron-e2e/jasmine.js",
+    "clean": "del -f .webpack out node_modules workspaces/shared-lib/dist workspaces/angular-app/node_modules workspaces/angular-app/dist",
     "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
-  "private": true,
-  "dependencies": {
-    "source-map-support": "^0.5.17"
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "name": "EAQS"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_angular_quick_start"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": []
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./workspaces/electron-app/renderer/index.html",
+                  "js": "./workspaces/electron-app/renderer/index.ts",
+                  "name": "main_window",
+                  "preload": {
+                    "js": "./workspaces/electron-app/renderer/preload.ts"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.3",
-    "@angular/animations": "~10.1.3",
-    "@angular/cli": "~10.1.3",
-    "@angular/common": "~10.1.3",
-    "@angular/compiler": "~10.1.3",
-    "@angular/compiler-cli": "~10.1.3",
-    "@angular/core": "~10.1.3",
-    "@angular/forms": "~10.1.3",
-    "@angular/language-service": "~10.1.3",
-    "@angular/platform-browser": "~10.1.3",
-    "@angular/platform-browser-dynamic": "~10.1.3",
-    "@angular/router": "~10.1.3",
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "@ngx-translate/core": "^13.0.0",
-    "@ngx-translate/http-loader": "^6.0.0",
-    "@types/jasmine": "~3.5.0",
-    "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^14.11.2",
-    "chromedriver": "^85.0.1",
-    "codelyzer": "^6.0.0",
-    "conventional-changelog-cli": "^2.0.31",
-    "cpy-cli": "^3.1.0",
-    "cross-env": "^7.0.2",
-    "del-cli": "^3.0.0",
-    "electron": "^10.1.3",
-    "electron-builder": "^22.5.1",
-    "electron-webpack": "^2.8.2",
-    "fs-extra": "^9.0.0",
-    "husky": "^4.2.5",
-    "jasmine-core": "^3.6.0",
-    "jasmine-spec-reporter": "^6.0.0",
-    "karma": "^5.2.3",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~3.0.2",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-deb": "^6.0.0-beta.57",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.58",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+    "@electron-forge/maker-zip": "^6.0.0-beta.57",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.57",
+    "@types/jasmine": "^3.8.1",
+    "@types/jasminewd2": "^2.0.10",
+    "@types/lodash": "^4.14.171",
+    "@types/node": "^14.17.5",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "@vercel/webpack-asset-relocator-loader": "^1.6.0",
+    "conventional-changelog-cli": "^2.1.1",
+    "copy-webpack-plugin": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.0.0",
+    "del-cli": "^4.0.1",
+    "electron": "^13.1.7",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "^2.20.0",
+    "fork-ts-checker-webpack-plugin": "^6.0.1",
+    "husky": "^7.0.1",
+    "jasmine": "^3.8.0",
+    "jasmine-core": "^3.8.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "node-loader": "^2.0.0",
     "npm-run-all": "^4.1.5",
-    "protractor": "~7.0.0",
-    "rxjs": "^6.6.3",
-    "spectron": "^12.0.0",
-    "ts-node": "^9.0.0",
-    "tslib": "^2.0.0",
-    "tslint": "~6.1.0",
-    "typescript": "~4.0.3",
-    "wait-on": "^5.2.0",
-    "webpack": "^4.42.1",
-    "winston": "^3.2.1",
-    "zone.js": "^0.10.3"
+    "npm-watch": "^0.10.0",
+    "spectron": "^15.0.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^9.2.2",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.0.2",
+    "wait-on": "^6.0.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "fs-extra": "^10.0.0",
+    "winston": "^3.3.3"
   },
   "husky": {
     "hooks": {

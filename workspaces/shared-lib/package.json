@@ -1,0 +1,9 @@
+{
+  "name": "shared-lib",
+  "version": "1.0.2",
+  "main": "dist/index.js",
+  "scripts": {
+  },
+  "author": "Sourcygen",
+  "license": "MIT"
+}
