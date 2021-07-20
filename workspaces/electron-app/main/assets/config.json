@@ -1,6 +1,6 @@
 {
   "development": {
-    "config_id": "development",
+    "configId": "development",
     "mainLogFile": "dist/dev-main.log",
     "mainLogLevel": "debug",
     "isIconAvailable": true,
@@ -10,7 +10,7 @@
     "isOpenDevTools": true
   },
   "e2e-test": {
-    "config_id": "e2e-test",
+    "configId": "e2e-test",
     "mainLogFile": "dist/e2e-main.log",
     "mainLogLevel": "error",
     "isIconAvailable": true,
@@ -20,7 +20,7 @@
     "isOpenDevTools": false
   },
   "production": {
-    "config_id": "production",
+    "configId": "production",
     "mainLogFile": "main.log",
     "mainLogLevel": "error",
     "isIconAvailable": false,

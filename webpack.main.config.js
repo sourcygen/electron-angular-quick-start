@@ -20,7 +20,7 @@ module.exports = {
       patterns: [
         { from: "workspaces/electron-app/main/assets" },
         { 
-          from: "workspaces/angular-app/dist",
+          from: "workspaces/angular-app/.dist/angular-app",
           to: "../renderer/angular_window",
           noErrorOnMissing: true 
         }

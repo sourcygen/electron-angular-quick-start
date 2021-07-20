@@ -9,7 +9,7 @@ jasmine.loadConfig({
   spec_files: ["./**/*-spec.ts"],
   helpers: ["./**/*-helper.ts"],
   random: false,
-  seed: null,
+  seed: undefined,
   stopSpecOnExpectationFailure: false,
 });
 jasmine.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;

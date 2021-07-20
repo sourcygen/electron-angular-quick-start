@@ -14,7 +14,7 @@ export class MutiplesComponent implements OnInit {
     input: new FormControl(Math.round(Math.random() * 100) % 10),
   });
 
-  multiples = [];
+  multiples: number[] = [];
 
   constructor(
     private electronIpc: ElectronIpcService,
@@ -23,13 +23,16 @@ export class MutiplesComponent implements OnInit {
 
   ngOnInit(): void {
     // Specifying what to do with received data from main process
-    this.electronIpc.receive(WindowApiConst.MULTIPLES_OUTPUT, (...data: []) => {
-      // Update current data
-      this.multiples = data;
-    });
+    this.electronIpc.receive<number[]>(
+      WindowApiConst.MULTIPLES_OUTPUT,
+      (output: number[]) => {
+        // Update current data
+        this.multiples = output;
+      }
+    );
 
     // Reset multiples on form changes
-    this.timesTableForm.valueChanges.subscribe((value) => {
+    this.timesTableForm.valueChanges.subscribe(() => {
       this.multiples = [];
     });
 
@@ -37,12 +40,12 @@ export class MutiplesComponent implements OnInit {
     this.onSubmit();
   }
 
-  translateIn(lang: string) {
+  translateIn(lang: string): void {
     this.translate.use(lang);
   }
 
-  onSubmit() {
-    const intput = this.timesTableForm.value.input;
-    this.electronIpc.send(WindowApiConst.MULTIPLES_INPUT, intput);
+  onSubmit(): void {
+    const input = this.timesTableForm.value.input;
+    this.electronIpc.send(WindowApiConst.MULTIPLES_INPUT, input);
   }
 }

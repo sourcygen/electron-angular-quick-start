@@ -8,37 +8,33 @@ export class ElectronIpcService {
   private _api!: WindowApi;
 
   constructor(private zone: NgZone) {
-    if (window && (window as any).api) {
-      try {
-        this._api = (window as any).api;
-      } catch (e) {
-        throw e;
-      }
+    if (window && (window as Window).api) {
+      this._api = (window as Window).api;
       console.log('Preloader API has been loaded successfully');
     } else {
       console.warn('Preloader API is not loaded');
     }
   }
 
-  public receive(channel: string, func: (...data: any) => void): void {
+  public receive<Out>(channel: string, func: (output: Out) => void): void {
     if (this._api) {
-      this._api.receive(channel, (...data) => {
-        console.log(`Received from main process channel [${channel}]`, data);
+      this._api.receive<Out>(channel, (output) => {
+        console.log(`Received from main process channel [${channel}]`, output);
 
         // Next code might run outside of Angular zone and therefore Angular
         // doesn't recognize it needs to run change detection
         // Further details on SO : https://stackoverflow.com/a/49136353/11480016
         this.zone.run(() => {
-          func(...data);
+          func(output);
         });
       });
     }
   }
 
-  public send(channel: string, ...data: any): void {
+  public send<In>(channel: string, input: In): void {
     if (this._api) {
-      console.log(`Sending to main process channel [${channel}]`, data);
-      this._api.send(channel, ...data);
+      console.log(`Sending to main process channel [${channel}]`, input);
+      this._api.send<In>(channel, input);
     }
   }
 }
