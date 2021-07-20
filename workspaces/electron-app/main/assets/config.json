@@ -1,29 +1,29 @@
 {
-  "development": {
-    "configId": "development",
-    "mainLogFile": "dist/dev-main.log",
-    "mainLogLevel": "debug",
-    "isIconAvailable": true,
-    "isNodeIntegration": false,
-    "isContextIsolation": true,
-    "isEnableRemoteModule": false,
-    "isOpenDevTools": true
-  },
-  "e2e-test": {
-    "configId": "e2e-test",
-    "mainLogFile": "dist/e2e-main.log",
-    "mainLogLevel": "error",
-    "isIconAvailable": true,
-    "isNodeIntegration": true,
-    "isContextIsolation": false,
-    "isEnableRemoteModule": true,
-    "isOpenDevTools": false
-  },
-  "production": {
-    "configId": "production",
-    "mainLogFile": "main.log",
-    "mainLogLevel": "error",
-    "isIconAvailable": false,
-    "isOpenDevTools": true
-  }
+	"development": {
+		"configId": "development",
+		"mainLogFile": "dist/dev-main.log",
+		"mainLogLevel": "debug",
+		"isIconAvailable": true,
+		"isNodeIntegration": false,
+		"isContextIsolation": true,
+		"isEnableRemoteModule": false,
+		"isOpenDevTools": true
+	},
+	"e2e-test": {
+		"configId": "e2e-test",
+		"mainLogFile": "dist/e2e-main.log",
+		"mainLogLevel": "error",
+		"isIconAvailable": true,
+		"isNodeIntegration": true,
+		"isContextIsolation": false,
+		"isEnableRemoteModule": true,
+		"isOpenDevTools": false
+	},
+	"production": {
+		"configId": "production",
+		"mainLogFile": "main.log",
+		"mainLogLevel": "error",
+		"isIconAvailable": false,
+		"isOpenDevTools": true
+	}
 }

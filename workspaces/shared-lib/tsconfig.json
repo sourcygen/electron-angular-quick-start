@@ -1,10 +1,10 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "sourceMap": true,
-    "composite": true,
-    "declaration": true,
-    "outDir": "./.dist"
-  },
-  "include": ["./**/*.ts"]
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"sourceMap": true,
+		"composite": true,
+		"declaration": true,
+		"outDir": "./.dist"
+	},
+	"include": ["./**/*.ts"]
 }
