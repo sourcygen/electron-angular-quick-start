@@ -3,48 +3,48 @@ import * as os from "os";
 import * as path from "path";
 import * as winston from "winston";
 
-declare const global: any;
+declare const global: Global;
 
 export class Logger {
   private static singleton: Logger;
   private _logger: winston.Logger;
 
-  public static error(message: string, ...meta: any[]) {
+  public static error(message: string, ...meta: any[]): void {
     Logger.initSingleton();
-    Logger.singleton._logger.error(message, ...meta);
+    Logger.singleton._logger.error(message, meta);
   }
 
-  public static warn(message: string, ...meta: any[]) {
+  public static warn(message: string, ...meta: any[]): void {
     Logger.initSingleton();
-    Logger.singleton._logger.warn(message, ...meta);
+    Logger.singleton._logger.warn(message, meta);
   }
 
-  public static info(message: string, ...meta: any[]) {
+  public static info(message: string, ...meta: any[]): void {
     Logger.initSingleton();
-    Logger.singleton._logger.info(message, ...meta);
+    Logger.singleton._logger.info(message, meta);
   }
 
-  public static http(message: string, ...meta: any[]) {
+  public static http(message: string, ...meta: any[]): void {
     Logger.initSingleton();
-    Logger.singleton._logger.http(message, ...meta);
+    Logger.singleton._logger.http(message, meta);
   }
 
-  public static verbose(message: string, ...meta: any[]) {
+  public static verbose(message: string, ...meta: any[]): void {
     Logger.initSingleton();
-    Logger.singleton._logger.verbose(message, ...meta);
+    Logger.singleton._logger.verbose(message, meta);
   }
 
-  public static debug(message: string, ...meta: any[]) {
+  public static debug(message: string, ...meta: any[]): void {
     Logger.initSingleton();
-    Logger.singleton._logger.debug(message, ...meta);
+    Logger.singleton._logger.debug(message, meta);
   }
 
-  public static silly(message: string, ...meta: any[]) {
+  public static silly(message: string, ...meta: any[]): void {
     Logger.initSingleton();
-    Logger.singleton._logger.silly(message, ...meta);
+    Logger.singleton._logger.silly(message, meta);
   }
 
-  private static initSingleton() {
+  private static initSingleton(): void {
     if (!Logger.singleton) {
       Logger.singleton = new Logger();
     }
@@ -58,7 +58,7 @@ export class Logger {
       transports: [
         new winston.transports.File({
           filename: this.getLogFilename(),
-          level: global.gConfig.mainLogLevel,
+          level: global.appConfig.mainLogLevel,
           format: winston.format.combine(
             winston.format.timestamp(),
             this.fileFormat
@@ -69,7 +69,7 @@ export class Logger {
 
     // If we're not in production then log also to the `console` with the format:
     // `${info.timestamp} ${info.level}: ${info.message} JSON.stringify({ ...rest }) `
-    if (global.gConfig.config_id === "development") {
+    if (global.appConfig.configId === "development") {
       this._logger.add(
         new winston.transports.Console({
           stderrLevels: ["error", "warn"],
@@ -87,8 +87,8 @@ export class Logger {
    * In production, returns absolute standard path depending on platform
    */
   private getLogFilename() {
-    let filename = global.gConfig.mainLogFile;
-    if (global.gConfig.config_id === "production") {
+    let filename = global.appConfig.mainLogFile;
+    if (global.appConfig.configId === "production") {
       const appName = app.getName();
       if (process.platform == "linux") {
         filename = `.config/${appName}/${filename}`;
@@ -106,24 +106,28 @@ export class Logger {
    * Write JSON logs with given format :
    * `${timestamp} ${level} : ${info.message} : ${meta})`
    */
-  private fileFormat = winston.format.printf((data: any) => {
-    return JSON.stringify(this.prepareLogData(data));
-  });
+  private fileFormat = winston.format.printf(
+    (data: winston.Logform.TransformableInfo) => {
+      return JSON.stringify(this.prepareLogData(data));
+    }
+  );
 
   /**
    * Custom winston console format
    * Write logs with given format :
    * `${timestamp} ${level} : ${info.message} : JSON.stringify({ ...meta }) `
    */
-  private consoleFormat = winston.format.printf((data: any) => {
-    const preparedData = this.prepareLogData(data);
-    return (
-      `${preparedData.timestamp} ${preparedData.level} : ` +
-      `${preparedData.message} : ${JSON.stringify(preparedData.meta)}`
-    );
-  });
+  private consoleFormat = winston.format.printf(
+    (data: winston.Logform.TransformableInfo) => {
+      const preparedData = this.prepareLogData(data);
+      return (
+        `${preparedData.timestamp} ${preparedData.level} : ` +
+        `${preparedData.message} : ${JSON.stringify(preparedData.meta)}`
+      );
+    }
+  );
 
-  private prepareLogData = (data: any) => {
+  private prepareLogData = (data: winston.Logform.TransformableInfo) => {
     const additionalData = { ...data };
     delete additionalData.timestamp;
     delete additionalData.level;

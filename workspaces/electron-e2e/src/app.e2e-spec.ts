@@ -3,7 +3,7 @@ import { Application } from "spectron";
 
 describe("A simple test to verify a visible window is opened with a title", () => {
   // Init local app
-  let app = new Application({
+  const app = new Application({
     path: path.join(__dirname, "../../../node_modules/.bin/electron"),
     args: [path.join(__dirname, "../../../.webpack/main/index.js")],
   });

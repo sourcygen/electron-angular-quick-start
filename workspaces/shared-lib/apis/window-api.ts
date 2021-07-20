@@ -4,12 +4,12 @@ export interface WindowApi {
    * @param channel used by the renderer to receive data and by the main to send them
    * @param func the callback function to execute when data are available
    */
-  receive(channel: any, func: (...data: any) => void): void;
+  receive<Out>(channel: string, func: (output: Out) => void): void;
 
   /**
    * This method is used by the renderer process to send data to the main process
    * @param channel used by the renderer to send data and by the main to receive them
    * @param data the data sent by the renderer process to the main process
    */
-  send(channel: string, ...data: any): void;
+  send<In>(channel: string, input: In): void;
 }

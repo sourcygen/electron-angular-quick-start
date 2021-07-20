@@ -45,7 +45,7 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts .",
     "test:electron-e2e": "npm run package && cross-env X_NODE_ENV=e2e-test node workspaces/electron-e2e/jasmine.js",
-    "clean": "del -f .webpack out node_modules workspaces/shared-lib/dist workspaces/angular-app/node_modules workspaces/angular-app/dist",
+    "clean": "del -f .webpack out node_modules workspaces/shared-lib/.dist workspaces/angular-app/node_modules workspaces/angular-app/.dist",
     "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "config": {
@@ -137,7 +137,7 @@
     "style-loader": "^2.0.0",
     "ts-loader": "^9.2.2",
     "ts-node": "^10.1.0",
-    "typescript": "^4.0.2",
+    "typescript": "^4.3.5",
     "wait-on": "^6.0.0"
   },
   "dependencies": {

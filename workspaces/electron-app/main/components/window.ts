@@ -1,26 +1,25 @@
 import { app, BrowserWindow, ipcMain, nativeImage } from "electron";
 import * as path from "path";
-import * as url from "url";
 import { AbstractService } from "../services/abstract-service";
 import { MultiplesService } from "../services/multiples-service";
 import { Logger } from "../utils/logger";
 
-declare const global: any;
+declare const global: Global;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
 export class Window {
-  private _window: BrowserWindow | any;
+  private _electronWindow: BrowserWindow | undefined;
 
   constructor() {
     this.createWindow();
     this.loadRenderer();
-    this.registerService(MultiplesService);
+    this.registerService<number, number[]>(new MultiplesService());
   }
 
   private createWindow(): void {
-    this._window = new BrowserWindow({
-      width: 800,
-      height: 600,
+    this._electronWindow = new BrowserWindow({
+      width: 1280,
+      height: 720,
       backgroundColor: "#FFFFFF",
       // FIXME
       // icon: this.loadIcon(),
@@ -28,25 +27,25 @@ export class Window {
         // Default behavior in Electron since 5, that
         // limits the powers granted to remote content
         // except in e2e test when those powers are required by Spectron
-        nodeIntegration: global.gConfig.isNodeIntegration,
+        nodeIntegration: global.appConfig.isNodeIntegration,
         // Isolate window context to protect against prototype pollution
         // except in e2e test when that access is required by Spectron
-        contextIsolation: global.gConfig.isContextIsolation,
+        contextIsolation: global.appConfig.isContextIsolation,
         // Ensure that JS values can't unsafely cross between worlds
         // when using contextIsolation
-        worldSafeExecuteJavaScript: global.gConfig.isContextIsolation,
+        worldSafeExecuteJavaScript: global.appConfig.isContextIsolation,
         // Disable the remote module to enhance security
         // except in e2e test when that access is required by Spectron
-        enableRemoteModule: global.gConfig.isEnableRemoteModule,
+        enableRemoteModule: global.appConfig.isEnableRemoteModule,
         // Use a preload script to enhance security
         preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       },
     });
   }
 
-  private loadIcon(): Electron.NativeImage {
-    let iconObj = null;
-    if (global.gConfig.isIconAvailable) {
+  private loadIcon(): Electron.NativeImage | undefined {
+    let iconObj = undefined;
+    if (global.appConfig.isIconAvailable) {
       const iconPath = path.join(__dirname, "icons/icon.png");
       Logger.debug("Icon Path", iconPath);
       iconObj = nativeImage.createFromPath(iconPath);
@@ -59,58 +58,63 @@ export class Window {
   }
 
   private loadRenderer(): void {
-    if (global.gConfig.config_id === "development") {
+    if (global.appConfig.configId === "development") {
       // Dev mode, take advantage of the live reload by loading local URL
-      this.window.loadURL(`http://localhost:4200`);
+      this.electronWindow.loadURL(`http://localhost:4200`);
     } else {
       // Else mode, we simply load angular bundle
-      const indexPath = url.format({
-        pathname: path.join(__dirname, `../renderer/angular_window/index.html`),
-        protocol: "file:",
-        slashes: true,
-      });
-      this.window.loadURL(indexPath);
+      const indexPath = path.join(
+        __dirname,
+        "../renderer/angular_window/index.html"
+      );
+      this.electronWindow.loadURL(`file://${indexPath}`);
     }
 
-    if (global.gConfig.isOpenDevTools) {
+    if (global.appConfig.isOpenDevTools) {
       this.openDevTools();
     }
 
     // When the window is closed`
-    this._window.on("closed", () => {
+    this._electronWindow.on("closed", () => {
       // Remove IPC Main listeners
       ipcMain.removeAllListeners();
       // Delete current reference
-      delete this._window;
+      delete this._electronWindow;
     });
   }
 
   private openDevTools(): void {
-    this._window.webContents.openDevTools();
-    this._window.webContents.on("devtools-opened", () => {
-      this._window.focus();
+    this._electronWindow.webContents.openDevTools();
+    this._electronWindow.webContents.on("devtools-opened", () => {
+      this._electronWindow.focus();
       setImmediate(() => {
-        this._window.focus();
+        this._electronWindow.focus();
       });
     });
   }
 
-  private registerService(AnyService: typeof AbstractService) {
-    const service = new AnyService();
-    ipcMain.on(service.receptionChannel(), async (event, ...args) => {
-      // Handling input
-      Logger.debug(`Received [${service.receptionChannel()}]`, args);
-      const data = await service.process(...args);
+  private registerService<In, Out>(service: AbstractService<In, Out>) {
+    ipcMain.on(
+      service.receptionChannel(),
+      async (event: Electron.IpcMainEvent, ...args: any[]) => {
+        // Handling input
+        const input = args[0];
+        Logger.debug(`[${service.receptionChannel()}]  =====> `, input);
+        const output: Out = await service.process(input);
 
-      // Handling output
-      if (service.sendingChannel()) {
-        Logger.debug(`Sent [${service.sendingChannel()}]`, data);
-        this._window.webContents.send(service.sendingChannel(), ...data);
+        // Handling output
+        if (service.sendingChannel()) {
+          Logger.debug(`[${service.sendingChannel()}] =====> `, output);
+          this._electronWindow.webContents.send(
+            service.sendingChannel(),
+            output
+          );
+        }
       }
-    });
+    );
   }
 
-  public get window(): BrowserWindow | any {
-    return this._window;
+  public get electronWindow(): BrowserWindow | undefined {
+    return this._electronWindow;
   }
 }
