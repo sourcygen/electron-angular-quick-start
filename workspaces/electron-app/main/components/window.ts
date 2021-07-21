@@ -21,8 +21,7 @@ export class Window {
 			width: 1280,
 			height: 720,
 			backgroundColor: '#FFFFFF',
-			// FIXME
-			// icon: this.loadIcon(),
+			icon: this.loadIcon(),
 			webPreferences: {
 				// Default behavior in Electron since 5, that
 				// limits the powers granted to remote content

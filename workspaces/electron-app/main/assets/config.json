@@ -24,6 +24,6 @@
 		"mainLogFile": "main.log",
 		"mainLogLevel": "error",
 		"isIconAvailable": false,
-		"isOpenDevTools": true
+		"isOpenDevTools": false
 	}
 }
