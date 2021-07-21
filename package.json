@@ -55,31 +55,21 @@
 	},
 	"config": {
 		"forge": {
-			"packagerConfig": {},
+			"packagerConfig": {
+				"name": "electron-angular",
+				"icon": "./workspaces/electron-app/main/assets/icons/icon"
+			},
 			"makers": [
 				{
 					"name": "@electron-forge/maker-dmg",
-					"config": {
-						"name": "EAQS"
-					}
-				},
-				{
-					"name": "@electron-forge/maker-squirrel",
-					"config": {
-						"name": "electron_angular_quick_start"
-					}
-				},
-				{
-					"name": "@electron-forge/maker-zip",
-					"platforms": []
+					"config": {}
 				},
 				{
 					"name": "@electron-forge/maker-deb",
 					"config": {}
 				},
 				{
-					"name": "@electron-forge/maker-rpm",
-					"config": {}
+					"name": "@electron-forge/maker-squirrel"
 				}
 			],
 			"plugins": [
