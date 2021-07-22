@@ -1,9 +1,8 @@
 {
-  "name": "shared-lib",
-  "version": "2.0.0",
-  "main": "dist/index.js",
-  "scripts": {
-  },
-  "author": "Sourcygen",
-  "license": "MIT"
+	"name": "shared-lib",
+	"version": "2.0.0",
+	"main": ".dist/index.js",
+	"scripts": {},
+	"author": "Sourcygen",
+	"license": "MIT"
 }

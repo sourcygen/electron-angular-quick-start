@@ -1,153 +1,155 @@
 {
-  "name": "electron-angular-quick-start",
-  "productName": "electron-angular-quick-start",
-  "version": "2.0.0",
-  "description": "An Electron and Angular Quick-starter",
-  "repository": "https://github.com/sourcygen/electron-angular-quick-start.git",
-  "author": "Sourcygen",
-  "license": "MIT",
-  "main": ".webpack/main",
-  "keywords": [
-    "angular",
-    "angular 12",
-    "electron",
-    "electron 13",
-    "typescript",
-    "typescript 4",
-    "spectron",
-    "spectron 15",
-    "scss",
-    "live reload"
-  ],
-  "workspaces": [
-    "workspaces/angular-app",
-    "workspaces/shared-lib"
-  ],
-  "watch": {
-    "restart-electron-app": {
-      "patterns": [
-        "workspaces/electron-app",
-        "workspaces/shared-lib"
-      ],
-      "extensions": "ts,tsx"
-    }
-  },
-  "scripts": {
-    "start": "npm-run-all -p start:shared-lib start:angular-app start:electron-app",
-    "start:shared-lib": "tsc -b workspaces/shared-lib -w",
-    "start:angular-app": "cd workspaces/angular-app && npm run start",
-    "start:electron-app": "wait-on http://localhost:4200 && npm-watch restart-electron-app",
-    "restart-electron-app": "electron-forge start",
-    "package": "npm run package:angular-app && npm run package:electron-app",
-    "package:angular-app": "cd workspaces/angular-app && npm run package",
-    "package:electron-app": "electron-forge package",
-    "make": "npm run package:angular-app && electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts .",
-    "test:electron-e2e": "npm run package && cross-env X_NODE_ENV=e2e-test node workspaces/electron-e2e/jasmine.js",
-    "clean": "del -f .webpack out node_modules workspaces/shared-lib/dist workspaces/angular-app/node_modules workspaces/angular-app/dist",
-    "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-dmg",
-          "config": {
-            "name": "EAQS"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "electron_angular_quick_start"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": []
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ],
-      "plugins": [
-        [
-          "@electron-forge/plugin-webpack",
-          {
-            "mainConfig": "./webpack.main.config.js",
-            "renderer": {
-              "config": "./webpack.renderer.config.js",
-              "entryPoints": [
-                {
-                  "html": "./workspaces/electron-app/renderer/index.html",
-                  "js": "./workspaces/electron-app/renderer/index.ts",
-                  "name": "main_window",
-                  "preload": {
-                    "js": "./workspaces/electron-app/renderer/preload.ts"
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      ]
-    }
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
-    "@electron-forge/cli": "^6.0.0-beta.57",
-    "@electron-forge/maker-deb": "^6.0.0-beta.57",
-    "@electron-forge/maker-dmg": "^6.0.0-beta.58",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
-    "@electron-forge/maker-zip": "^6.0.0-beta.57",
-    "@electron-forge/plugin-webpack": "6.0.0-beta.57",
-    "@types/jasmine": "^3.8.1",
-    "@types/jasminewd2": "^2.0.10",
-    "@types/lodash": "^4.14.171",
-    "@types/node": "^14.17.5",
-    "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "@typescript-eslint/parser": "^4.0.1",
-    "@vercel/webpack-asset-relocator-loader": "^1.6.0",
-    "conventional-changelog-cli": "^2.1.1",
-    "copy-webpack-plugin": "^9.0.1",
-    "cross-env": "^7.0.3",
-    "css-loader": "^5.0.0",
-    "del-cli": "^4.0.1",
-    "electron": "^13.1.7",
-    "eslint": "^7.6.0",
-    "eslint-plugin-import": "^2.20.0",
-    "fork-ts-checker-webpack-plugin": "^6.0.1",
-    "husky": "^7.0.1",
-    "jasmine": "^3.8.0",
-    "jasmine-core": "^3.8.0",
-    "jasmine-spec-reporter": "^7.0.0",
-    "node-loader": "^2.0.0",
-    "npm-run-all": "^4.1.5",
-    "npm-watch": "^0.10.0",
-    "spectron": "^15.0.0",
-    "style-loader": "^2.0.0",
-    "ts-loader": "^9.2.2",
-    "ts-node": "^10.1.0",
-    "typescript": "^4.0.2",
-    "wait-on": "^6.0.0"
-  },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0",
-    "fs-extra": "^10.0.0",
-    "winston": "^3.3.3"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  }
+	"name": "electron-angular-quick-start",
+	"productName": "electron-angular-quick-start",
+	"version": "2.1.0",
+	"description": "An Electron and Angular Quick-starter",
+	"repository": "https://github.com/sourcygen/electron-angular-quick-start.git",
+	"author": "Sourcygen",
+	"license": "MIT",
+	"main": ".webpack/main",
+	"keywords": [
+		"angular",
+		"angular 12",
+		"electron",
+		"electron 13",
+		"typescript",
+		"typescript 4",
+		"spectron",
+		"spectron 15",
+		"scss",
+		"live reload"
+	],
+	"workspaces": [
+		"workspaces/angular-app",
+		"workspaces/shared-lib"
+	],
+	"watch": {
+		"restart-electron-app": {
+			"patterns": [
+				"workspaces/electron-app",
+				"workspaces/shared-lib"
+			],
+			"extensions": "ts,tsx"
+		}
+	},
+	"scripts": {
+		"start": "npm-run-all -p start:shared-lib start:angular-app start:electron-app",
+		"start:shared-lib": "tsc -b workspaces/shared-lib -w",
+		"start:angular-app": "cd workspaces/angular-app && npm run start",
+		"start:electron-app": "wait-on http://localhost:4200 && npm-watch restart-electron-app",
+		"restart-electron-app": "electron-forge start",
+		"package": "npm run package:angular-app && npm run package:electron-app",
+		"package:angular-app": "cd workspaces/angular-app && npm run package",
+		"package:electron-app": "electron-forge package",
+		"make": "npm run package:angular-app && electron-forge make",
+		"publish": "electron-forge publish",
+		"lint": "eslint --ext .ts .",
+		"test:e2e": "npm run test:angular-e2e && npm run test:electron-e2",
+		"test:angular-e2e": "npm-run-all -p -r start:angular-app start:angular-e2e",
+		"start:angular-e2e": "wait-on http://localhost:4200 && cd workspaces/angular-app && npm run cypress:run",
+		"test:electron-e2e": "npm run package && cross-env X_NODE_ENV=e2e-test node workspaces/electron-e2e/jasmine.js",
+		"clean": "shx rm -rf .webpack out node_modules workspaces/shared-lib/.dist workspaces/angular-app/node_modules workspaces/angular-app/.dist",
+		"version": "npx conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+		"prepare": "husky install",
+		"postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks",
+		"release": "standard-version",
+		"release:minor": "standard-version --release-as minor",
+		"release:patch": "standard-version --release-as patch",
+		"release:major": "standard-version --release-as major"
+	},
+	"config": {
+		"forge": {
+			"packagerConfig": {
+				"name": "electron-angular",
+				"icon": "./workspaces/electron-app/main/assets/icons/icon"
+			},
+			"makers": [
+				{
+					"name": "@electron-forge/maker-dmg",
+					"config": {}
+				},
+				{
+					"name": "@electron-forge/maker-deb",
+					"config": {}
+				},
+				{
+					"name": "@electron-forge/maker-squirrel"
+				}
+			],
+			"plugins": [
+				[
+					"@electron-forge/plugin-webpack",
+					{
+						"mainConfig": "./webpack.main.config.js",
+						"renderer": {
+							"config": "./webpack.renderer.config.js",
+							"entryPoints": [
+								{
+									"html": "./workspaces/electron-app/renderer/index.html",
+									"js": "./workspaces/electron-app/renderer/index.ts",
+									"name": "main_window",
+									"preload": {
+										"js": "./workspaces/electron-app/renderer/preload.ts"
+									}
+								}
+							]
+						}
+					}
+				]
+			]
+		}
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^12.1.4",
+		"@commitlint/config-conventional": "^12.1.4",
+		"@electron-forge/cli": "^6.0.0-beta.57",
+		"@electron-forge/maker-deb": "^6.0.0-beta.57",
+		"@electron-forge/maker-dmg": "^6.0.0-beta.58",
+		"@electron-forge/maker-rpm": "^6.0.0-beta.57",
+		"@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+		"@electron-forge/maker-zip": "^6.0.0-beta.57",
+		"@electron-forge/plugin-webpack": "6.0.0-beta.57",
+		"@types/jasmine": "^3.8.1",
+		"@types/jasminewd2": "^2.0.10",
+		"@types/lodash": "^4.14.171",
+		"@types/node": "^14.17.5",
+		"@typescript-eslint/eslint-plugin": "^4.0.1",
+		"@typescript-eslint/parser": "^4.0.1",
+		"@vercel/webpack-asset-relocator-loader": "^1.6.0",
+		"conventional-changelog-cli": "^2.1.1",
+		"copy-webpack-plugin": "^9.0.1",
+		"cross-env": "^7.0.3",
+		"css-loader": "^5.0.0",
+		"electron": "^13.1.7",
+		"eslint": "^7.6.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "^2.20.0",
+		"eslint-plugin-prettier": "^3.4.0",
+		"fork-ts-checker-webpack-plugin": "^6.0.1",
+		"husky": "^7.0.1",
+		"jasmine": "^3.8.0",
+		"jasmine-core": "^3.8.0",
+		"jasmine-spec-reporter": "^7.0.0",
+		"lint-staged": "^11.0.1",
+		"node-loader": "^2.0.0",
+		"npm-run-all": "^4.1.5",
+		"npm-watch": "^0.10.0",
+		"prettier": "^2.3.2",
+		"shx": "^0.3.3",
+		"spectron": "^15.0.0",
+		"standard-version": "^9.3.1",
+		"style-loader": "^2.0.0",
+		"ts-loader": "^9.2.2",
+		"ts-node": "^10.1.0",
+		"typescript": "^4.3.5",
+		"wait-on": "^6.0.0"
+	},
+	"dependencies": {
+		"electron-squirrel-startup": "^1.0.0",
+		"fs-extra": "^10.0.0",
+		"winston": "^3.3.3"
+	},
+	"lint-staged": {
+		"*.ts": "npm run lint"
+	}
 }
