@@ -1,0 +1,1 @@
+{"version":3,"file":"window-api-consts.js","sourceRoot":"","sources":["../../apis/window-api-consts.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,cAAc;;AACzB,4EAA4E;AACrD,8BAAe,GAAG,mBAAmB,CAAC;AAE7D,iFAAiF;AAC1D,+BAAgB,GAAG,oBAAoB,CAAC;AAE/D,kFAAkF;AAC3D,oCAAqB,GAAG;IAC7C,cAAc,CAAC,eAAe;CAC/B,CAAC;AAEF,sFAAsF;AAC/D,sCAAuB,GAAG;IAC/C,cAAc,CAAC,gBAAgB;CAChC,CAAC"}
