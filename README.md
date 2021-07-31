@@ -10,13 +10,13 @@
 
 ## Overview
 
-Depending on your need, putting up [Electron](https://www.electronjs.org/ "Electron") and [Angular](https://angular.io/ "Angular") may require a lot of setup. Fortunately, this simple project will help you **go fast** and directly start building desktop apps.
+Depending on your need, putting up [Electron](https://www.electronjs.org/) and [Angular](https://angular.io/) may require a lot of setup. Fortunately, this simple project will help you **go fast** and directly start building desktop apps in [Typescript](https://www.typescriptlang.org/) with live reload.
 
 > Because building a desktop app with Electron and Angular shouldn't be difficult.
 
 ### Main features :
 
-- This project is based on last [Angular 12](https://angular.io/ "Angular") version with required dependencies for [Electron 13](https://www.electronjs.org/ "Electron").
+- This project is based on last [Angular 12](https://angular.io/) version with required dependencies for [Electron 13](https://www.electronjs.org/).
 - This project is also written in [Typescript 4](https://www.typescriptlang.org/) and includes test samples ([Jasmine](https://jasmine.github.io/) and [Spectron 15](https://www.electronjs.org/spectron)).
 - The app is runnable `on desktop` (with **live-reload** in `development mode`).
 - The app is also runnable `on browser` but **without Electron features**.
@@ -56,6 +56,9 @@ git clone https://github.com/sourcygen/electron-angular-quick-start.git
 # Then go into the repository
 cd electron-angular-quick-start
 
+# Install Angular CLI globally (if necessary)
+npm install -g @angular/cli
+
 # After that, install dependencies
 npm install
 
@@ -74,6 +77,33 @@ npm start
 | `npm run package`           | Build and prepare application content    |
 | `npm run make`              | Generate platform distributables (./out) |
 | `npm run clean`             | Delete generated outputs                 |
+
+### Adding dependencies
+
+This project architecture is based on [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces). This allows having different version of the same dependency depending on your workspace :
+
+- electron-app
+  `npm install --save <dependency>`
+- angular-app
+  `npm install --save <dependency> -w angular-app`
+- shared-lib
+  `npm install --save <dependency> -w shared-lib`
+
+### Customizing app icons
+
+```bash
+# Install the icon generator globally
+npm i -g electron-icon-maker
+
+# Run following command from anywhere you have your input file (1024px à least) to generate platforms icons
+electron-icon-maker --input=icon.png --output=./out
+```
+
+Rename and move files to match with next config
+
+- ./workspaces/electron-app/main/assets/icons/icon.png for Linux
+- ./workspaces/electron-app/main/assets/icons/icon.icns for MacOs
+- ./workspaces/electron-app/main/assets/icons/icon.ico for Windows
 
 ## Resources
 
