@@ -23,21 +23,12 @@
 		"workspaces/angular-app",
 		"workspaces/shared-lib"
 	],
-	"watch": {
-		"restart-electron-app": {
-			"patterns": [
-				"workspaces/electron-app",
-				"workspaces/shared-lib"
-			],
-			"extensions": "ts,tsx"
-		}
-	},
 	"scripts": {
 		"start": "npm-run-all -p start:shared-lib start:angular-app start:electron-app",
 		"start:shared-lib": "tsc -b workspaces/shared-lib -w",
-		"start:angular-app": "cd workspaces/angular-app && npm run start",
-		"start:electron-app": "wait-on http://localhost:4200 && npm-watch restart-electron-app",
-		"restart-electron-app": "electron-forge start",
+		"start:angular-app": "wait-on workspaces/shared-lib/.dist/index.d.ts && cd workspaces/angular-app && npm run start",
+		"start:electron-app": "node scripts/electron-forge-start-watch.js",
+		"start:electron-app:once": "wait-on http://localhost:4200 && electron-forge start",
 		"package": "npm run package:angular-app && npm run package:electron-app",
 		"package:angular-app": "cd workspaces/angular-app && npm run package",
 		"package:electron-app": "electron-forge package",
@@ -49,10 +40,8 @@
 		"start:angular-e2e": "wait-on http://localhost:4200 && cd workspaces/angular-app && npm run cypress:run",
 		"test:electron-e2e": "npm run package && cross-env X_NODE_ENV=e2e-test node workspaces/electron-e2e/jasmine.js",
 		"clean": "shx rm -rf .webpack out node_modules workspaces/shared-lib/.dist workspaces/angular-app/node_modules workspaces/angular-app/.dist",
-		"version": "npx conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
 		"prepare": "husky install",
 		"postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks",
-		"release": "standard-version",
 		"release:minor": "standard-version --release-as minor",
 		"release:patch": "standard-version --release-as patch",
 		"release:major": "standard-version --release-as major"
@@ -116,7 +105,7 @@
 		"@typescript-eslint/eslint-plugin": "^4.0.1",
 		"@typescript-eslint/parser": "^4.0.1",
 		"@vercel/webpack-asset-relocator-loader": "^1.6.0",
-		"conventional-changelog-cli": "^2.1.1",
+		"chokidar-cli": "^3.0.0",
 		"copy-webpack-plugin": "^9.0.1",
 		"cross-env": "^7.0.3",
 		"css-loader": "^5.0.0",
@@ -133,12 +122,12 @@
 		"lint-staged": "^11.0.1",
 		"node-loader": "^2.0.0",
 		"npm-run-all": "^4.1.5",
-		"npm-watch": "^0.10.0",
 		"prettier": "^2.3.2",
 		"shx": "^0.3.3",
 		"spectron": "^15.0.0",
 		"standard-version": "^9.3.1",
 		"style-loader": "^2.0.0",
+		"tree-kill": "^1.2.2",
 		"ts-loader": "^9.2.2",
 		"ts-node": "^10.1.0",
 		"typescript": "^4.3.5",
