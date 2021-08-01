@@ -31,5 +31,4 @@ if (process.env.X_NODE_ENV === 'e2e-test') {
 	contextBridge.exposeInMainWorld('api', windowApi);
 }
 
-console.log(typeof window);
 console.log('The preload script has been injected successfully.');
