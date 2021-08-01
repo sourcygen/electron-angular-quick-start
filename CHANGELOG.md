@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v2.0.1...v2.3.0) (2021-08-01)
+
+### Features
+
+- ci build/test/make (github workflows) ([351eb1a](https://github.com/sourcygen/electron-angular-quick-start/commit/351eb1a7f0bd78043d8590effe7482965e0574b1))
+
+### Bug Fixes
+
+- shared-lib not found ([99742e3](https://github.com/sourcygen/electron-angular-quick-start/commit/99742e3dc1779141c5c8f2ec573faf33c72dea84))
+- using chokidar instead of npm-watch (issue [#4](https://github.com/sourcygen/electron-angular-quick-start/issues/4)) ([2feedce](https://github.com/sourcygen/electron-angular-quick-start/commit/2feedcefc5a2125e701b460bbd3d644775572d47))
+
 ## [2.2.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v2.0.1...v2.2.0) (2021-07-22)
 
 ### Bug Fixes
