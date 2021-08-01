@@ -1,5 +1,5 @@
+<a href="https://github.com/sourcygen/electron-angular-quick-start/actions"><img src="https://github.com/sourcygen/electron-angular-quick-start/workflows/CI/badge.svg?branch=master" alt="CI Status"/></a>
 <a href="https://gitHub.com/sourcygen/electron-angular-quick-start/graphs/commit-activity"><img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintenance Status"/></a>
-<a href="https://travis-ci.org/sourcygen/electron-angular-quick-start"><img src="https://travis-ci.org/sourcygen/electron-angular-quick-start.svg?branch=master" alt="Build Status"/></a>
 <a href="https://github.com/sourcygen/electron-angular-quick-start/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="License MIT"></a>
 <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
 <a href="https://twitter.com/share?text=Build%20cross%20platform%20desktop%20app%20with%20Electron%20and%20Angular%20%F0%9F%9A%80&url=https://github.com/sourcygen/electron-angular-quick-start"><img src="https://img.shields.io/twitter/url/https/github.com/sourcygen/electron-angular-quick-start.svg?style=social" alt="Tweet" align="right"></a>
@@ -47,17 +47,27 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/) and [
 
 ## Getting started
 
-To clone and run this repository, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) and [Angular-CLI](https://angular.io/cli) installed on your computer. And then from your command line:
+To clone and run this repository, you'll need installed on your computer at least :
+
+- [Git](https://git-scm.com)
+- [Node 14](https://nodejs.org/en/download/)
+- [Npm 7](https://docs.npmjs.com/about-npm)
+- [Angular-CLI 12](https://angular.io/cli)
+
+Then from your command line:
 
 ```bash
-# First, clone this repository
+# Upgrade to the latest version of npm (if necessary)
+npm install -g npm@latest
+
+# Upgrade to the latest version of Angular CLI (if necessary)
+npm install -g @angular/cli@latest
+
+# Clone this repository
 git clone https://github.com/sourcygen/electron-angular-quick-start.git
 
 # Then go into the repository
 cd electron-angular-quick-start
-
-# Install Angular CLI globally (if necessary)
-npm install -g @angular/cli
 
 # After that, install dependencies
 npm install

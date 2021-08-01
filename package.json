@@ -1,6 +1,6 @@
 {
-	"name": "electron-angular-quick-start",
-	"productName": "electron-angular-quick-start",
+	"name": "electron-angular-app",
+	"productName": "Electron Angular App",
 	"version": "2.2.0",
 	"description": "An Electron and Angular Quick-starter",
 	"repository": "https://github.com/sourcygen/electron-angular-quick-start.git",
@@ -30,13 +30,14 @@
 		"start:electron-app": "node scripts/electron-forge-start-watch.js",
 		"start:electron-app:once": "wait-on http://localhost:4200 && electron-forge start",
 		"package": "npm run package:angular-app && npm run package:electron-app",
-		"package:angular-app": "cd workspaces/angular-app && npm run package",
-		"package:electron-app": "electron-forge package",
+		"package:shared-lib": "tsc -b workspaces/shared-lib",
+		"package:angular-app": "npm run package:shared-lib && cd workspaces/angular-app && npm run package",
+		"package:electron-app": "npm run package:shared-lib && electron-forge package",
 		"make": "npm run package:angular-app && electron-forge make",
 		"publish": "electron-forge publish",
-		"lint": "eslint --ext .ts .",
+		"lint": "npm run package:shared-lib && eslint --ext .ts .",
 		"test:e2e": "npm run test:angular-e2e && npm run test:electron-e2",
-		"test:angular-e2e": "npm-run-all -p -r start:angular-app start:angular-e2e",
+		"test:angular-e2e": "npm-run-all -p -r start start:angular-e2e",
 		"start:angular-e2e": "wait-on http://localhost:4200 && cd workspaces/angular-app && npm run cypress:run",
 		"test:electron-e2e": "npm run package && cross-env X_NODE_ENV=e2e-test node workspaces/electron-e2e/jasmine.js",
 		"clean": "shx rm -rf .webpack out node_modules workspaces/shared-lib/.dist workspaces/angular-app/node_modules workspaces/angular-app/.dist",
@@ -49,7 +50,8 @@
 	"config": {
 		"forge": {
 			"packagerConfig": {
-				"name": "electron-angular",
+				"name": "Electron Angular App",
+				"executableName": "electron-angular-app",
 				"icon": "./workspaces/electron-app/main/assets/icons/icon"
 			},
 			"makers": [
@@ -62,7 +64,8 @@
 					"config": {}
 				},
 				{
-					"name": "@electron-forge/maker-squirrel"
+					"name": "@electron-forge/maker-squirrel",
+					"config": {}
 				}
 			],
 			"plugins": [

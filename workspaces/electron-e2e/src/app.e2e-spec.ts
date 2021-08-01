@@ -1,25 +1,15 @@
-import * as path from 'path';
 import { Application } from 'spectron';
+import { startApp, stopApp } from './_hooks';
 
 describe('A simple test to verify a visible window is opened with a title', () => {
-	// Init local app
-	const app = new Application({
-		path: path.join(__dirname, '../../../node_modules/.bin/electron'),
-		args: [path.join(__dirname, '../../../.webpack/main/index.js')],
-	});
+	let app: Application;
 
 	beforeAll(async () => {
-		// Init local app and wait until window loaded
-		await app.start();
-		await app.client.waitUntilWindowLoaded();
+		app = await startApp();
 	});
 
 	afterAll(async () => {
-		if (app && app.isRunning()) {
-			// Wait 1 second and then stop local app
-			await new Promise((resolve) => setTimeout(resolve, 1000));
-			await app.stop();
-		}
+		await stopApp(app);
 	});
 
 	it('shows an initial window', async () => {
