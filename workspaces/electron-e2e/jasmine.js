@@ -4,7 +4,6 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 const jasmine = new Jasmine();
 jasmine.loadConfig({
 	showColors: true,
-	defaultTimeoutInterval: 15000,
 	spec_dir: 'workspaces/electron-e2e',
 	spec_files: ['./**/*-spec.ts'],
 	helpers: ['./**/*-helper.ts'],
