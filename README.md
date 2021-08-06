@@ -99,13 +99,37 @@ This project architecture is based on [npm workspaces](https://docs.npmjs.com/cl
 - shared-lib
   `npm install --save <dependency> -w shared-lib`
 
+### Listing outdated dependencies
+
+- electron-app
+  `npm run outdated-deps:electron-app`
+- angular-app
+  `npm run outdated-deps:angular-app`
+- shared-lib
+  `npm run outdated-deps:shared-lib`
+- all of them
+  `npm run outdated-deps`
+
+### Updating dependencies
+
+- electron-app
+  `npm run update-deps:electron-app`
+- angular-app
+  `npm run update-deps:angular-app`
+- shared-lib
+  `npm run update-deps:shared-lib`
+- all of them
+  `npm run update-deps`
+
+**NB**: Be sure your `electron` and `spectron` dependencies are matching according to this [version mapping table](https://github.com/electron-userland/spectron#version-map).
+
 ### Customizing app icons
 
 ```bash
 # Install the icon generator globally
 npm i -g electron-icon-maker
 
-# Run following command from anywhere you have your input file (1024px à least) to generate platforms icons
+# Run following command from anywhere you have your input file (1024px at least) to generate platforms icons
 electron-icon-maker --input=icon.png --output=./out
 ```
 
