@@ -20,7 +20,7 @@
 		"@angular/router": "~12.2.0",
 		"@ngx-translate/core": "^13.0.0",
 		"@ngx-translate/http-loader": "^6.0.0",
-		"electron": "^13.1.8",
+		"electron": "^13.6.6",
 		"rxjs": "~7.3.0",
 		"tslib": "^2.3.0",
 		"zone.js": "~0.11.4"
@@ -32,7 +32,7 @@
 		"@cypress/schematic": "^1.5.0",
 		"@types/node": "^16.4.13",
 		"cypress": "8.2.0",
-		"karma": "~6.3.4",
+		"karma": "~6.3.16",
 		"karma-chrome-launcher": "~3.1.0",
 		"karma-coverage": "~2.0.3",
 		"karma-jasmine": "~4.0.1",
