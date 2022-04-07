@@ -14,7 +14,13 @@
 		"resolveJsonModule": true,
 		"paths": {
 			"*": ["node_modules/*"]
-		}
+		},
+		"types": [
+			"node",
+			"webdriverio/async",
+			"@wdio/jasmine-framework",
+			"expect-webdriverio"
+		]
 	},
 	"include": ["workspaces/electron-app/**/*", "workspaces/electron-e2e/**/*"]
 }
