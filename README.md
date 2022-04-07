@@ -16,8 +16,8 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/) and [
 
 ### Main features :
 
-- This project is based on last [Angular 12](https://angular.io/) version with required dependencies for [Electron 13](https://www.electronjs.org/).
-- This project is also written in [Typescript 4](https://www.typescriptlang.org/) and includes test samples ([Jasmine](https://jasmine.github.io/) and [Spectron 15](https://www.electronjs.org/spectron)).
+- This project is based on last [Angular 12](https://angular.io/) version with required dependencies for [Electron 18](https://www.electronjs.org/).
+- This project is also written in [Typescript 4](https://www.typescriptlang.org/) and includes test samples ([WebdriverIO](https://webdriver.io/) and [Jasmine](https://jasmine.github.io/)).
 - The app is runnable `on desktop` (with **live-reload** in `development mode`).
 - The app is also runnable `on browser` but **without Electron features**.
 - You can generate your platform distributables thanks to [`electron-forge`](https://www.electronforge.io/).
@@ -120,8 +120,6 @@ This project architecture is based on [npm workspaces](https://docs.npmjs.com/cl
   `npm run update-deps:shared-lib`
 - all of them
   `npm run update-deps`
-
-**NB**: Be sure your `electron` and `spectron` dependencies are matching according to this [version mapping table](https://github.com/electron-userland/spectron#version-map).
 
 ### Customizing app icons
 
