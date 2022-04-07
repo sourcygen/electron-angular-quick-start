@@ -1,6 +1,8 @@
 import { app, BrowserWindow, shell } from 'electron';
 import { Window } from './window';
 
+declare const global: Global;
+
 export class App {
 	private static _wrapper: Window;
 
@@ -8,10 +10,6 @@ export class App {
 		app.on('window-all-closed', App.quit);
 		app.on('activate', App.start);
 		app.on('ready', App.start);
-
-		// Fix warning by applying electron new default value for this property
-		// Further details : https://github.com/electron/electron/issues/18397
-		app.allowRendererProcessReuse = true;
 
 		// Limit navigation and open external links in default browser
 		app.on('web-contents-created', App.openExternalLinksInDefaultBrowser);
@@ -30,7 +28,11 @@ export class App {
 
 	private static quit() {
 		// On MacOS it is common for applications to stay open until the user explicitly quits
-		if (process.platform !== 'darwin') {
+		// But WebDriverIO Test Runner does handle that behaviour yet
+		if (
+			process.platform !== 'darwin' ||
+			global.appConfig.configId === 'e2e-test'
+		) {
 			app.quit();
 		}
 	}
