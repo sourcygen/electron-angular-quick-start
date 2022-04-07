@@ -50,9 +50,9 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/) and [
 To clone and run this repository, you'll need installed on your computer at least :
 
 - [Git](https://git-scm.com)
-- [Node 14](https://nodejs.org/en/download/)
-- [Npm 7](https://docs.npmjs.com/about-npm)
-- [Angular-CLI 12](https://angular.io/cli)
+- [Node 12.20, 14.15 or 16.10](https://nodejs.org/en/download/)
+- [Npm 7+](https://docs.npmjs.com/about-npm)
+- [Angular-CLI 13](https://angular.io/cli)
 
 Then from your command line:
 
