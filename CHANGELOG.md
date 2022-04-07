@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v2.4.0...v3.0.0) (2022-04-07)
+
+### Features
+
+- migrating electron e2e from spectron (deprecated) to wdio ([#32](https://github.com/sourcygen/electron-angular-quick-start/issues/32)) ([d7c7af1](https://github.com/sourcygen/electron-angular-quick-start/commit/d7c7af13f109427c74e55886c2de0a19614283b6))
+
 ## [2.4.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v2.0.1...v2.4.0) (2021-08-06)
 
 ### Features
