@@ -3,6 +3,7 @@ import * as path from 'path';
 import { AbstractService } from '../services/abstract-service';
 import { MultiplesService } from '../services/multiples-service';
 import { Logger } from '../utils/logger';
+import * as remoteMain from '@electron/remote/main';
 
 declare const global: Global;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -30,16 +31,16 @@ export class Window {
 				// Isolate window context to protect against prototype pollution
 				// except in e2e test when that access is required by Spectron
 				contextIsolation: global.appConfig.isContextIsolation,
-				// Ensure that JS values can't unsafely cross between worlds
-				// when using contextIsolation
-				worldSafeExecuteJavaScript: global.appConfig.isContextIsolation,
-				// Disable the remote module to enhance security
-				// except in e2e test when that access is required by Spectron
-				enableRemoteModule: global.appConfig.isEnableRemoteModule,
 				// Use a preload script to enhance security
 				preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
 			},
 		});
+
+		// Disable the remote module to enhance security
+		// except in e2e test when that access is required
+		if (global.appConfig.isEnableRemoteModule) {
+			remoteMain.enable(this._electronWindow.webContents);
+		}
 	}
 
 	private loadIcon(): Electron.NativeImage | undefined {

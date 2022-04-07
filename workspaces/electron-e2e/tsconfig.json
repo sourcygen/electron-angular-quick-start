@@ -3,8 +3,13 @@
 	"compilerOptions": {
 		"outDir": "./.dist",
 		"module": "commonjs",
-		"target": "es5",
+		"target": "es2020",
 		"noEmit": true,
-		"types": ["jasmine", "jasminewd2", "node"]
+		"types": [
+			"node",
+			"webdriverio/async",
+			"@wdio/jasmine-framework",
+			"expect-webdriverio"
+		]
 	}
 }

@@ -88,6 +88,9 @@ typings/
 # Electron-Forge
 out/
 
+# Allure
+allure-results
+
 # System Files
 .DS_Store
 Thumbs.db
