@@ -9,7 +9,7 @@
 	"main": ".webpack/main",
 	"keywords": [
 		"angular",
-		"angular 12",
+		"angular 13",
 		"electron",
 		"electron 18",
 		"typescript",
