@@ -26,10 +26,10 @@ export class Window {
 			webPreferences: {
 				// Default behavior in Electron since 5, that
 				// limits the powers granted to remote content
-				// except in e2e test when those powers are required by Spectron
+				// except in e2e test when those powers are required
 				nodeIntegration: global.appConfig.isNodeIntegration,
 				// Isolate window context to protect against prototype pollution
-				// except in e2e test when that access is required by Spectron
+				// except in e2e test when that access is required
 				contextIsolation: global.appConfig.isContextIsolation,
 				// Use a preload script to enhance security
 				preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
