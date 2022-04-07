@@ -9,7 +9,7 @@
 	"main": ".webpack/main",
 	"keywords": [
 		"angular",
-		"angular 12",
+		"angular 13",
 		"electron",
 		"electron 18",
 		"typescript",
@@ -42,7 +42,7 @@
 		"start:angular-e2e": "wait-on http://localhost:4200 && cd workspaces/angular-app && npm run cypress:run",
 		"test:electron-e2e": "npm run package && npm run test:electron-e2e:wdio-only",
 		"test:electron-e2e:wdio-only": "cross-env X_NODE_ENV=e2e-test wdio run workspaces/electron-e2e/wdio.conf.ts --autoCompileOpts.tsNodeOpts.project=workspaces/electron-e2e/tsconfig.json",
-		"clean": "shx rm -rf .webpack out node_modules workspaces/shared-lib/.dist workspaces/angular-app/node_modules workspaces/angular-app/.dist",
+		"clean": "shx rm -rf .webpack out allure-results node_modules workspaces/shared-lib/.dist workspaces/angular-app/node_modules workspaces/angular-app/.dist",
 		"prepare": "husky install",
 		"postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks",
 		"outdated-deps": "npm run outdated-deps:electron-app && npm run outdated-deps:angular-app && npm run outdated-deps:shared-lib",
