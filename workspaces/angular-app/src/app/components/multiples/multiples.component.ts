@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, UntypedFormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { WindowApiConst } from 'shared-lib';
 import { ElectronIpcService } from '../../services/electron-ipc.service';
 
 @Component({
-	selector: 'app-mutiples',
-	templateUrl: './mutiples.component.html',
-	styleUrls: ['./mutiples.component.scss'],
+	selector: 'app-multiples',
+	templateUrl: './multiples.component.html',
+	styleUrls: ['./multiples.component.scss'],
 })
-export class MutiplesComponent implements OnInit {
-	timesTableForm = new FormGroup({
-		input: new FormControl(Math.round(Math.random() * 100) % 10),
+export class MultiplesComponent implements OnInit {
+	timesTableForm = new UntypedFormGroup({
+		input: new FormControl<number>(Math.round(Math.random() * 100) % 10, {
+			nonNullable: true,
+		}),
 	});
 
 	multiples: number[] = [];

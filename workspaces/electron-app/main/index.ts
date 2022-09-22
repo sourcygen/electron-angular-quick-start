@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra';
-import * as _ from 'lodash';
-import * as path from 'path';
+import _ from 'lodash';
+import * as path from 'node:path';
 import { AppConfig } from 'shared-lib';
 import { App } from './components/app';
 
@@ -14,14 +14,14 @@ declare global {
 }
 
 // Load config
-const currentEnv = process.env.X_NODE_ENV || process.env.NODE_ENV;
+const currentEnvironment = process.env.X_NODE_ENV || process.env.NODE_ENV;
 const appConfigs = fs.readJsonSync(path.join(__dirname, 'config.json'));
-const defaultConf = appConfigs.development;
-const currentConf = appConfigs[currentEnv];
+const defaultConfig = appConfigs.development;
+const currentConfig = appConfigs[currentEnvironment];
 global.appConfig =
-	currentEnv === 'development'
-		? defaultConf
-		: _.merge(defaultConf, currentConf);
+	currentEnvironment === 'development'
+		? defaultConfig
+		: _.merge(defaultConfig, currentConfig);
 
 // Launch app
 App.launch();

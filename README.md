@@ -16,7 +16,7 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/) and [
 
 ### Main features :
 
-- This project is based on last [Angular 13](https://angular.io/) version with required dependencies for [Electron 18](https://www.electronjs.org/).
+- This project is based on last [Angular 14](https://angular.io/) version with required dependencies for [Electron 18](https://www.electronjs.org/).
 - This project is also written in [Typescript 4](https://www.typescriptlang.org/) and includes test samples ([WebdriverIO](https://webdriver.io/) and [Jasmine](https://jasmine.github.io/)).
 - The app is runnable `on desktop` (with **live-reload** in `development mode`).
 - The app is also runnable `on browser` but **without Electron features**.
@@ -83,6 +83,7 @@ npm start
 | `npm run install`           | Install dependencies                     |
 | `npm run start`             | Run the app on desktop (dev mode)        |
 | `npm run start:angular-app` | Run the app on browser (dev mode)        |
+| `npm run test:angular-e2e`  | Run **angular** end-to-end tests         |
 | `npm run test:electron-e2e` | Run **electron** end-to-end tests        |
 | `npm run package`           | Build and prepare application content    |
 | `npm run make`              | Generate platform distributables (./out) |

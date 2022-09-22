@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MutiplesComponent } from './components/mutiples/mutiples.component';
+import { MultiplesComponent } from './components/multiples/multiples.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: MutiplesComponent,
-  },
+	{
+		path: '',
+		component: MultiplesComponent,
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule],
 })
 export class AppRoutingModule {}
