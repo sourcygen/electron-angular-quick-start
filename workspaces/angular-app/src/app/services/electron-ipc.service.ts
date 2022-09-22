@@ -16,7 +16,7 @@ export class ElectronIpcService {
 		}
 	}
 
-	public receive<Out>(channel: string, func: (output: Out) => void): void {
+	public receive<Out>(channel: string, callback: (output: Out) => void): void {
 		if (this._api) {
 			this._api.receive<Out>(channel, (output) => {
 				console.log(`Received from main process channel [${channel}]`, output);
@@ -25,7 +25,7 @@ export class ElectronIpcService {
 				// doesn't recognize it needs to run change detection
 				// Further details on SO : https://stackoverflow.com/a/49136353/11480016
 				this.zone.run(() => {
-					func(output);
+					callback(output);
 				});
 			});
 		}

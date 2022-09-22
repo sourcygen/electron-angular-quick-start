@@ -11,11 +11,13 @@ const windowApi: WindowApi = {
 			ipcRenderer.send(channel, input);
 		}
 	},
-	receive: <Out>(channel: string, func: (output: Out) => void) => {
+	receive: <Out>(channel: string, callback: (output: Out) => void) => {
 		if (WindowApiConst.RECEIVING_SAFE_CHANNELS.includes(channel)) {
 			// Deliberately strip event as it includes `sender`
-			ipcRenderer.on(channel, (event: IpcRendererEvent, ...args: any[]) =>
-				func(args[0])
+			ipcRenderer.on(
+				channel,
+				(_event: IpcRendererEvent, ...parameters: any[]) =>
+					callback(parameters[0])
 			);
 		}
 	},

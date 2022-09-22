@@ -1,5 +1,5 @@
 import type { Options } from '@wdio/types';
-import path from 'path';
+import path from 'node:path';
 
 // Path to local electron binary
 let electronPath = path.join(__dirname, '../../node_modules/.bin/electron');
@@ -9,7 +9,7 @@ if (process.platform === 'win32') {
 
 // Starting hook
 const waitUntilWindowLoaded = async () => {
-	const timeout = 10000;
+	const timeout = 10_000;
 	await browser.waitUntil(async () => (await browser.isLoading()) === false, {
 		timeout: timeout,
 		timeoutMsg: `Expected app to be loaded in less than ${timeout}ms`,
@@ -74,7 +74,7 @@ export const config: Options.Testrunner = {
 	// then the current working directory is where your `package.json` resides, so `wdio`
 	// will be called from there.
 	//
-	specs: ['./workspaces/electron-e2e/**/*.e2e-spec.ts'],
+	specs: ['./workspaces/electron-e2e/**/*.spec.ts'],
 	// Patterns to exclude.
 	exclude: [
 		// 'path/to/excluded/files'
@@ -154,11 +154,11 @@ export const config: Options.Testrunner = {
 	baseUrl: 'http://localhost',
 	//
 	// Default timeout for all waitFor* commands.
-	waitforTimeout: 10000,
+	waitforTimeout: 10_000,
 	//
 	// Default timeout in milliseconds for request
 	// if browser driver or grid doesn't send response
-	connectionRetryTimeout: 120000,
+	connectionRetryTimeout: 120_000,
 	//
 	// Default request retries count
 	connectionRetryCount: 3,
@@ -195,7 +195,7 @@ export const config: Options.Testrunner = {
 	// Options to be passed to Jasmine.
 	jasmineOpts: {
 		// Jasmine default timeout
-		defaultTimeoutInterval: 60000,
+		defaultTimeoutInterval: 60_000,
 		//
 		// The Jasmine framework allows interception of each assertion in order to log the state of the application
 		// or website depending on the result. For example, it is pretty handy to take a screenshot every time

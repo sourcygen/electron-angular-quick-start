@@ -1,9 +1,9 @@
+import * as remoteMain from '@electron/remote/main';
 import { app, BrowserWindow, ipcMain, nativeImage } from 'electron';
-import * as path from 'path';
+import * as path from 'node:path';
 import { AbstractService } from '../services/abstract-service';
 import { MultiplesService } from '../services/multiples-service';
 import { Logger } from '../utils/logger';
-import * as remoteMain from '@electron/remote/main';
 
 declare const global: Global;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -44,17 +44,17 @@ export class Window {
 	}
 
 	private loadIcon(): Electron.NativeImage | undefined {
-		let iconObj = undefined;
+		let iconObject;
 		if (global.appConfig.isIconAvailable) {
 			const iconPath = path.join(__dirname, 'icons/icon.png');
 			Logger.debug('Icon Path', iconPath);
-			iconObj = nativeImage.createFromPath(iconPath);
+			iconObject = nativeImage.createFromPath(iconPath);
 			// Change dock icon on MacOS
-			if (iconObj && process.platform === 'darwin') {
-				app.dock.setIcon(iconObj);
+			if (iconObject && process.platform === 'darwin') {
+				app.dock.setIcon(iconObject);
 			}
 		}
-		return iconObj;
+		return iconObject;
 	}
 
 	private loadRenderer(): void {
@@ -96,11 +96,11 @@ export class Window {
 	private registerService<In, Out>(service: AbstractService<In, Out>) {
 		ipcMain.on(
 			service.receptionChannel(),
-			async (event: Electron.IpcMainEvent, ...args: any[]) => {
+			async (event: Electron.IpcMainEvent, ...parameters: any[]) => {
 				// Handling input
-				const input = args[0];
+				const input = parameters[0];
 				Logger.debug(`[${service.receptionChannel()}]  =====> `, input);
-				const output: Out = await service.process(input);
+				const output: Out = service.process(input);
 
 				// Handling output
 				if (service.sendingChannel()) {
