@@ -50,9 +50,9 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/) and [
 To clone and run this repository, you'll need installed on your computer at least :
 
 - [Git](https://git-scm.com)
-- [Node 12.20, 14.15 or 16.10](https://nodejs.org/en/download/)
-- [Npm 7+](https://docs.npmjs.com/about-npm)
-- [Angular-CLI 13](https://angular.io/cli)
+- [Node 14.15.0 or later](https://nodejs.org/en/download/)
+- [Npm 7 or later](https://docs.npmjs.com/about-npm)
+- [Angular-CLI 14 or later](https://angular.io/cli)
 
 Then from your command line:
 
@@ -88,6 +88,15 @@ npm start
 | `npm run package`           | Build and prepare application content    |
 | `npm run make`              | Generate platform distributables (./out) |
 | `npm run clean`             | Delete generated outputs                 |
+
+## Behind a proxy
+
+After settings **HTTP_PROXY** and **HTTPS_PROXY** environment variables :
+
+```bash
+# Install dependencies
+npx cross-env ELECTRON_GET_USE_PROXY=true GLOBAL_AGENT_HTTPS_PROXY=%HTTPS_PROXY% npm install
+```
 
 ### Adding dependencies
 

@@ -17,6 +17,9 @@ export interface AppConfig {
 	/** Tells if  `contextIsolation` and `worldSafeExecuteJavaScript` webPreferences are enabled */
 	isContextIsolation: boolean;
 
+	/** Tells if `isSandbox` webPreference is enabled */
+	isSandbox: boolean;
+
 	/** Tells if `isEnableRemoteModule` webPreference is enabled */
 	isEnableRemoteModule: boolean;
 
