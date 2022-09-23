@@ -31,6 +31,11 @@ export class Window {
 				// Isolate window context to protect against prototype pollution
 				// except in e2e test when that access is required
 				contextIsolation: global.appConfig.isContextIsolation,
+				// Introduced in Electron 20 and enabled by default
+				// Among others security constraints, it prevents from required
+				// CommonJS modules imports into preload script
+				// which is not bundled yet in dev mode
+				sandbox: global.appConfig.isSandbox,
 				// Use a preload script to enhance security
 				preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
 			},
