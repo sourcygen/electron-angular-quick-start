@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v3.1.0...v3.2.0) (2022-09-24)
+
+### Features
+
+- angular upgrade - 13.3.2 => 14.2.3 ([fa6222a](https://github.com/sourcygen/electron-angular-quick-start/commit/fa6222a1a86c0528a09f901a97f61f374933e2a6))
+- electron upgrade - 18.0.3 => 20.2.0 ([f1fce63](https://github.com/sourcygen/electron-angular-quick-start/commit/f1fce63e24fc8c0ca53a97a83e337ea36332e645))
+
 ## [3.1.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v3.0.0...v3.1.0) (2022-04-07)
 
 ## [3.0.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v2.4.0...v3.0.0) (2022-04-07)
