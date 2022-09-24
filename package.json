@@ -1,7 +1,7 @@
 {
 	"name": "electron-angular-app",
 	"productName": "Electron Angular App",
-	"version": "3.1.0",
+	"version": "3.2.0",
 	"description": "An Electron and Angular Quick-starter",
 	"repository": "https://github.com/sourcygen/electron-angular-quick-start.git",
 	"author": "Sourcygen",
