@@ -16,7 +16,7 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/) and [
 
 ### Main features :
 
-- This project is based on last [Angular 13](https://angular.io/) version with required dependencies for [Electron 18](https://www.electronjs.org/).
+- This project is based on last [Angular 14](https://angular.io/) version with required dependencies for [Electron 18](https://www.electronjs.org/).
 - This project is also written in [Typescript 4](https://www.typescriptlang.org/) and includes test samples ([WebdriverIO](https://webdriver.io/) and [Jasmine](https://jasmine.github.io/)).
 - The app is runnable `on desktop` (with **live-reload** in `development mode`).
 - The app is also runnable `on browser` but **without Electron features**.
@@ -50,9 +50,9 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/) and [
 To clone and run this repository, you'll need installed on your computer at least :
 
 - [Git](https://git-scm.com)
-- [Node 12.20, 14.15 or 16.10](https://nodejs.org/en/download/)
-- [Npm 7+](https://docs.npmjs.com/about-npm)
-- [Angular-CLI 13](https://angular.io/cli)
+- [Node 14.15.0 or later](https://nodejs.org/en/download/)
+- [Npm 7 or later](https://docs.npmjs.com/about-npm)
+- [Angular-CLI 14 or later](https://angular.io/cli)
 
 Then from your command line:
 
@@ -83,10 +83,20 @@ npm start
 | `npm run install`           | Install dependencies                     |
 | `npm run start`             | Run the app on desktop (dev mode)        |
 | `npm run start:angular-app` | Run the app on browser (dev mode)        |
+| `npm run test:angular-e2e`  | Run **angular** end-to-end tests         |
 | `npm run test:electron-e2e` | Run **electron** end-to-end tests        |
 | `npm run package`           | Build and prepare application content    |
 | `npm run make`              | Generate platform distributables (./out) |
 | `npm run clean`             | Delete generated outputs                 |
+
+## Behind a proxy
+
+After settings **HTTP_PROXY** and **HTTPS_PROXY** environment variables :
+
+```bash
+# Install dependencies
+npx cross-env ELECTRON_GET_USE_PROXY=true GLOBAL_AGENT_HTTPS_PROXY=%HTTPS_PROXY% npm install
+```
 
 ### Adding dependencies
 

@@ -1,11 +1,13 @@
 {
 	"env": {
 		"browser": true,
-		"es6": true,
+		"es2020": true,
 		"node": true
 	},
+	"plugins": ["@typescript-eslint", "import", "unicorn", "sonarjs"],
 	"extends": [
-		"eslint:recommended",
+		"plugin:unicorn/recommended",
+		"plugin:sonarjs/recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:import/errors",
@@ -15,8 +17,8 @@
 	"parser": "@typescript-eslint/parser",
 	"settings": {
 		"import/resolver": {
-			"node": {
-				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			"typescript": {
+				"project": "workspaces/*/tsconfig.json"
 			}
 		}
 	},
@@ -33,6 +35,7 @@
 			{
 				"ignoreRestArgs": true
 			}
-		]
+		],
+		"unicorn/prefer-module": "off"
 	}
 }

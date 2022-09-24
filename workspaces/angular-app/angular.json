@@ -47,7 +47,7 @@
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.prod.ts"
+									"with": "src/environments/environment.production.ts"
 								}
 							],
 							"outputHashing": "all"
@@ -128,5 +128,7 @@
 			}
 		}
 	},
-	"defaultProject": "angular-app"
+	"cli": {
+		"analytics": false
+	}
 }

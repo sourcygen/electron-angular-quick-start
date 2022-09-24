@@ -35,7 +35,8 @@ describe('A simple test to check if app window is opened, visible and with expec
 			// Checking there is one visible window
 			// expect(await browser.).toEqual(true);
 			// Please note that getWindowHandles() will return 2 if `dev tools` is opened.
-			expect((await browser.getWindowHandles()).length).toEqual(1);
+			const { length } = await browser.getWindowHandles();
+			expect(length).toEqual(1);
 		});
 
 		it('have expected title', async () => {
