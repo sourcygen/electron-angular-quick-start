@@ -17,9 +17,10 @@
 		},
 		"types": [
 			"node",
-			"webdriverio/async",
-			"@wdio/jasmine-framework",
-			"expect-webdriverio"
+			"expect-webdriverio",
+			"jasmine",
+			"@wdio/globals/types",
+			"@wdio/jasmine-framework"
 		]
 	},
 	"include": ["workspaces/electron-app/**/*", "workspaces/electron-e2e/**/*"]

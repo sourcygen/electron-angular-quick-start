@@ -79,9 +79,9 @@
 				}
 			],
 			"plugins": [
-				[
-					"@electron-forge/plugin-webpack",
-					{
+				{
+					"name": "@electron-forge/plugin-webpack",
+					"config": {
 						"mainConfig": "./webpack.main.config.js",
 						"renderer": {
 							"config": "./webpack.renderer.config.js",
@@ -97,7 +97,7 @@
 							]
 						}
 					}
-				]
+				}
 			]
 		}
 	},
@@ -111,6 +111,8 @@
 		"@electron-forge/maker-squirrel": "^6.0.5",
 		"@electron-forge/maker-zip": "^6.0.5",
 		"@electron-forge/plugin-webpack": "6.0.5",
+		"@testing-library/jasmine-dom": "^1.3.3",
+		"@types/jasmine": "^4.3.1",
 		"@types/lodash": "^4.14.191",
 		"@types/node": "^18.14.4",
 		"@typescript-eslint/eslint-plugin": "^5.54.0",
@@ -135,8 +137,10 @@
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-sonarjs": "^0.18.0",
 		"eslint-plugin-unicorn": "^45.0.2",
+		"expect-webdriverio": "^4.1.2",
 		"fork-ts-checker-webpack-plugin": "^7.3.0",
 		"husky": "^8.0.3",
+		"jasmine": "^4.5.0",
 		"lint-staged": "^13.1.2",
 		"node-loader": "^2.0.0",
 		"npm-check-updates": "^16.7.10",
