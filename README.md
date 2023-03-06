@@ -16,7 +16,7 @@ Depending on your need, putting up [Electron](https://www.electronjs.org/) and [
 
 ### Main features :
 
-- This project is based on last [Angular 14](https://angular.io/) version with required dependencies for [Electron 18](https://www.electronjs.org/).
+- This project is based on last [Angular 15](https://angular.io/) version with required dependencies for [Electron 23](https://www.electronjs.org/).
 - This project is also written in [Typescript 4](https://www.typescriptlang.org/) and includes test samples ([WebdriverIO](https://webdriver.io/) and [Jasmine](https://jasmine.github.io/)).
 - The app is runnable `on desktop` (with **live-reload** in `development mode`).
 - The app is also runnable `on browser` but **without Electron features**.
@@ -52,7 +52,7 @@ To clone and run this repository, you'll need installed on your computer at leas
 - [Git](https://git-scm.com)
 - [Node 14.15.0 or later](https://nodejs.org/en/download/)
 - [Npm 7 or later](https://docs.npmjs.com/about-npm)
-- [Angular-CLI 14 or later](https://angular.io/cli)
+- [Angular-CLI 15 or later](https://angular.io/cli)
 
 Then from your command line:
 
