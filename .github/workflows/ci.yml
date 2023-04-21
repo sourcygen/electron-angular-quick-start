@@ -3,14 +3,14 @@ name: 'CI'
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
-      - master
-      - develop
+      - main
+      - 'feat/**'
   pull_request:
     branches:
-      - master
+      - main
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -45,17 +45,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Upgrade to the latest version of npm
-        run: npm install -g npm@latest
+        # 'npm install -g npm@8.3.1' : workaround for Windows with Node.js 14.x
+        run: npm install -g npm@8.3.1 && npm install -g npm@latest
       - name: Upgrade to the latest version of Angular CLI
         run: npm install -g @angular/cli@latest
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Test Angular E2E
-        uses: GabrielBB/xvfb-action@v1
+        uses: coactions/setup-xvfb@v1
         with:
           run: npm run test:angular-e2e
       - name: Test Electron E2E
-        uses: GabrielBB/xvfb-action@v1
+        uses: coactions/setup-xvfb@v1
         with:
           run: npm run test:electron-e2e
       - name: Check lint
