@@ -1,4 +1,4 @@
-import AbstractPage from './page';
+import AbstractPage from './page.ts';
 
 class MultiplesPage extends AbstractPage {
 	/**

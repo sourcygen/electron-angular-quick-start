@@ -26,15 +26,12 @@ export class Window {
 			webPreferences: {
 				// Default behavior in Electron since 5, that
 				// limits the powers granted to remote content
-				// except in e2e test when those powers are required
 				nodeIntegration: global.appConfig.isNodeIntegration,
 				// Isolate window context to protect against prototype pollution
-				// except in e2e test when that access is required
 				contextIsolation: global.appConfig.isContextIsolation,
 				// Introduced in Electron 20 and enabled by default
 				// Among others security constraints, it prevents from required
-				// CommonJS modules imports into preload script
-				// which is not bundled yet in dev mode
+				// CommonJS modules imports to be bundled into preload script
 				sandbox: global.appConfig.isSandbox,
 				// Use a preload script to enhance security
 				preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
@@ -42,7 +39,6 @@ export class Window {
 		});
 
 		// Disable the remote module to enhance security
-		// except in e2e test when that access is required
 		if (global.appConfig.isEnableRemoteModule) {
 			remoteMain.enable(this._electronWindow.webContents);
 		}

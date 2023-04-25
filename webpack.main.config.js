@@ -15,6 +15,10 @@ module.exports = {
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
 		modules: [path.resolve(__dirname, 'node_modules'), 'node_modules'],
 	},
+	node: {
+		__filename: false,
+		__dirname: false,
+	},
 	plugins: [
 		new CopyWebpackPlugin({
 			patterns: [

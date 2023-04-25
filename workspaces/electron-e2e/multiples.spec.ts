@@ -1,4 +1,4 @@
-import MultiplesPage from './pageobjects/multiples.page';
+import MultiplesPage from './pageobjects/multiples.page.ts';
 
 describe('A simple test to check if a given input matches with computed multiples', () => {
 	describe('Multiples component should', () => {
@@ -10,6 +10,7 @@ describe('A simple test to check if a given input matches with computed multiple
 		it(`display expected results on input (${number})`, async () => {
 			await MultiplesPage.enterInput(number);
 			const results = await MultiplesPage.results;
+			expect(results.length).toBe(10);
 			for (const index of results.keys()) {
 				const ntimes = 1 + index;
 				const expected = `${number} * ${ntimes} = ${number * ntimes}`;
