@@ -7,16 +7,14 @@
 		"isNodeIntegration": false,
 		"isContextIsolation": true,
 		"isEnableRemoteModule": false,
+		"isSandbox": false,
 		"isOpenDevTools": true
 	},
 	"e2e-test": {
 		"configId": "e2e-test",
 		"mainLogFile": "dist/e2e-main.log",
 		"mainLogLevel": "error",
-		"isIconAvailable": true,
-		"isNodeIntegration": true,
-		"isContextIsolation": false,
-		"isEnableRemoteModule": true,
+		"isSandbox": true,
 		"isOpenDevTools": false
 	},
 	"production": {
@@ -24,6 +22,7 @@
 		"mainLogFile": "main.log",
 		"mainLogLevel": "error",
 		"isIconAvailable": false,
+		"isSandbox": true,
 		"isOpenDevTools": false
 	}
 }

@@ -9,7 +9,7 @@ export class App {
 	public static launch(): void {
 		app.on('window-all-closed', App.quit);
 		app.on('activate', App.start);
-		app.on('ready', App.start);
+		app.whenReady().then(App.start);
 
 		// Limit navigation and open external links in default browser
 		app.on('web-contents-created', App.openExternalLinksInDefaultBrowser);
@@ -28,7 +28,7 @@ export class App {
 
 	private static quit() {
 		// On MacOS it is common for applications to stay open until the user explicitly quits
-		// But WebDriverIO Test Runner does handle that behaviour yet
+		// But WebDriverIO Test Runner does not handle that behaviour yet
 		if (
 			process.platform !== 'darwin' ||
 			global.appConfig.configId === 'e2e-test'
