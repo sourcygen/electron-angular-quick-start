@@ -94,3 +94,4 @@ allure-results
 # System Files
 .DS_Store
 Thumbs.db
+setenv.cmd

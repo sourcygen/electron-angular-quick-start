@@ -52,17 +52,11 @@ To clone and run this repository, you'll need installed on your computer at leas
 - [Git](https://git-scm.com)
 - [Node 16 or later](https://nodejs.org/en/download/)
 - [Npm 7 or later](https://docs.npmjs.com/about-npm)
-- [Angular-CLI 15 or later](https://angular.io/cli)
+- [Angular-CLI 16 or later](https://angular.io/cli)
 
 Then from your command line:
 
 ```bash
-# Upgrade to the latest version of npm (if necessary)
-npm install -g npm@latest
-
-# Upgrade to the latest version of Angular CLI (if necessary)
-npm install -g @angular/cli@latest
-
 # Clone this repository
 git clone https://github.com/sourcygen/electron-angular-quick-start.git
 
