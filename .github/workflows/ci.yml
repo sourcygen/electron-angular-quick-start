@@ -44,10 +44,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Upgrade to the latest version of npm
-        run: npm install -g npm@latest
-      - name: Upgrade to the latest version of Angular CLI
-        run: npm install -g @angular/cli@latest
       - name: Install dependencies
         run: npm ci
       - name: Check lint

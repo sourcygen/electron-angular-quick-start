@@ -9,7 +9,7 @@
 	"main": ".webpack/main",
 	"keywords": [
 		"angular",
-		"angular 15",
+		"angular 16",
 		"electron",
 		"electron 24",
 		"typescript",
@@ -38,7 +38,7 @@
 		"make": "npm run package:angular-app && electron-forge make",
 		"publish": "electron-forge publish",
 		"lint": "npm run package:shared-lib && eslint --ext .ts .",
-		"test:angular": "cd workspaces/angular-app && ng test --watch=false --browsers ChromeHeadless",
+		"test:angular": "cd workspaces/angular-app && npx ng test --watch=false --browsers ChromeHeadless",
 		"test:e2e": "npm run test:angular-e2e && npm run test:electron-e2e",
 		"test:angular-e2e": "npm-run-all -p -r start:shared-lib start:angular-app start:angular-e2e",
 		"start:angular-e2e": "wait-on http://localhost:4200 && cd workspaces/angular-app && npm run cypress:run",
@@ -53,7 +53,7 @@
 		"outdated-deps:shared-lib": "cd workspaces/shared-lib && npx ncu",
 		"update-deps": "npm run update-deps:electron-app && npm run update-deps:angular-app && npm run update-deps:shared-lib",
 		"update-deps:electron-app": "npx ncu -u && npm run clean && npm i --force",
-		"update-deps:angular-app": "cd workspaces/angular-app && ng update @angular/cli @angular/core --force && npx ncu -u && cd ../.. && npm run clean && npm i --force",
+		"update-deps:angular-app": "cd workspaces/angular-app && npx ng update @angular/cli @angular/core --force && npx ncu -u && cd ../.. && npm run clean && npm i --force",
 		"update-deps:shared-lib": "cd workspaces/shared-lib && npx ncu -u",
 		"release:minor": "standard-version --release-as minor",
 		"release:patch": "standard-version --release-as patch",
@@ -160,6 +160,7 @@
 		"@electron/remote": "^2.0.9",
 		"electron-squirrel-startup": "^1.0.0",
 		"fs-extra": "^11.1.1",
+		"pretty-quick": "^3.1.3",
 		"winston": "^3.8.2"
 	},
 	"lint-staged": {
