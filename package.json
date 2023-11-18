@@ -129,8 +129,8 @@
 		"copy-webpack-plugin": "^11.0.0",
 		"cross-env": "^7.0.3",
 		"css-loader": "^6.7.3",
-		"electron": "^24.1.2",
-		"electron-chromedriver": "^24.0.0",
+		"electron": "^27.1.0",
+		"electron-chromedriver": "^27.1.0",
 		"eslint": "^8.39.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-import-resolver-typescript": "^3.5.5",
@@ -153,7 +153,7 @@
 		"ts-node": "^10.9.1",
 		"typescript": "^5.0.4",
 		"wait-on": "^7.0.1",
-		"wdio-electron-service": "^4.0.2",
+		"wdio-electron-service": "^5.4.0",
 		"wdio-wait-for": "^3.0.3"
 	},
 	"dependencies": {

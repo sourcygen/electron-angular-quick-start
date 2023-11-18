@@ -2,6 +2,8 @@ import type { Options } from '@wdio/types';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import packageJson from '../../package.json' assert { type: 'json' };
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Path to local electron binary
@@ -10,13 +12,10 @@ if (process.platform === 'win32') {
 	electronPath += '.cmd';
 }
 
-let chromedriverPath = path.join(
-	__dirname,
-	'../../node_modules/.bin/chromedriver'
-);
-if (process.platform === 'win32') {
-	chromedriverPath += '.cmd';
-}
+// Retreive electron version
+const electronDependency =
+	packageJson.devDependencies.electron.match(/([\d.]+)/g);
+const electronVersion = electronDependency ? electronDependency[0] : '';
 
 // Starting hook
 const waitUntilWindowLoaded = async () => {
@@ -96,16 +95,12 @@ export const config: Options.Testrunner = {
 	//
 	capabilities: [
 		{
-			// maxInstances can get overwritten per capability. So if you have an in-house Selenium
-			// grid with only 5 firefox instances available you can make sure that not more than
-			// 5 instances get started at a time.
-			maxInstances: 5,
-			browserName: 'chrome',
+			browserName: 'electron',
 			acceptInsecureCerts: true,
-			// If outputDir is provided WebdriverIO can capture driver session logs
-			// it is possible to configure which logTypes to include/exclude.
-			// excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-			// excludeDriverLogs: ['bugreport', 'server'],
+			browserVersion: electronVersion,
+			'wdio:chromedriverOptions': {
+				logPath: 'wdio-chromedriver.log',
+			},
 		},
 	],
 	//
@@ -159,11 +154,15 @@ export const config: Options.Testrunner = {
 		[
 			'electron',
 			{
-				binaryPath: electronPath,
-				appArgs: ['app=.webpack/main/index.js'],
-				chromedriver: {
-					chromedriverCustomPath: chromedriverPath,
-				},
+				appBinaryPath: electronPath,
+				appArgs: [
+					// Uncomment if necessary
+					// "--disable-infobars",
+					// "--disable-dev-shm-usage",
+					// "--no-sandbox",
+					// "--remote-debugging-port=9222",
+					'app=.webpack/main/index.js',
+				],
 			},
 		],
 	],
@@ -199,7 +198,7 @@ export const config: Options.Testrunner = {
 		// The Jasmine framework allows interception of each assertion in order to log the state of the application
 		// or website depending on the result. For example, it is pretty handy to take a screenshot every time
 		// an assertion fails.
-		expectationResultHandler: function (_passed, _assertion) {
+		expectationResultHandler: function (_passed: unknown, _assertion: unknown) {
 			// do something
 		},
 	},
