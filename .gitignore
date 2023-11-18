@@ -95,3 +95,4 @@ allure-results
 .DS_Store
 Thumbs.db
 setenv.cmd
+wdio-chromedriver.log
