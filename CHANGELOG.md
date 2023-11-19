@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v4.0.0...v5.0.0) (2023-11-19)
+
+### Features
+
+- **deps:** upgrading angular from 15.2.10 to 16.2.12 ([9adee42](https://github.com/sourcygen/electron-angular-quick-start/commit/9adee425a574516189ec51c6c1efe83262231758))
+- **deps:** upgrading angular from 16.2.12 to 17.0.3 ([0b817ab](https://github.com/sourcygen/electron-angular-quick-start/commit/0b817ab3ba70889ea2541569d00c1fb86214c4a9))
+- **deps:** upgrading eletron from 24.1.2 to 27.1.0 ([e6619ce](https://github.com/sourcygen/electron-angular-quick-start/commit/e6619ce1ecb4a1f535520312719c5d98e5bbff6a))
+- **deps:** upgrading other dependencies ([0e3cd2f](https://github.com/sourcygen/electron-angular-quick-start/commit/0e3cd2fb79d2b785288e99113ef4e5bede4b43c1))
+
+### Bug Fixes
+
+- **#49:** fixes [#49](https://github.com/sourcygen/electron-angular-quick-start/issues/49) - warnings about unused files during angular build ([2b2cb50](https://github.com/sourcygen/electron-angular-quick-start/commit/2b2cb50a84c9ec3ee1d6feedbad370d5735a0f75))
+
 ## [4.0.0](https://github.com/sourcygen/electron-angular-quick-start/compare/v3.2.0...v4.0.0) (2023-11-15)
 
 - angular upgrade - 14.2.3 => 15.2.8 ([7b7d8f7](https://github.com/sourcygen/electron-angular-quick-start/commit/7b7d8f750d6a8e3bf0c351b53b8837b121c274cf))
